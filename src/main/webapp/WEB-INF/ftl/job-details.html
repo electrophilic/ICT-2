@@ -47,9 +47,9 @@
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="company">
                     <h2>About this company</h2>
-                    <p><img src="/resources/images/jobs/job2.jpg" alt="" class="img-responsive-logo"></p>
-                    <p>Starbucks Coffee Singapore is a wholly owned subsidiary of Starbucks Coffee Corporation since June 2004. The first Starbucks store opened on 14 December 1996 at Liat Towers, strategically located along the nation's renowned Orchard Road shopping belt.</p>
-                    <p><a href="company.html" class="btn btn-primary" target="_blank">Read more</a></p>
+                    <p><img src="${compic!}" alt="" class="img-responsive-logo"></p>
+                    <p>${comInfo!}</p>
+                    <p><a href="/employer/${comid!}" class="btn btn-primary" target="_blank">Read more</a></p>
                 </div>
                 <hr>
                 <div class="sidebar-widget" id="company-jobs">
@@ -57,22 +57,22 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-briefcase"></i> Registration No. </span>
-                            <br>CB1287566
+                            <br>${comno!}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-industry"></i> Industry </span>
-                            <br>Accouting/Finance
+                            <br>${comInd!}
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-users"></i> Company Size </span>
-                            <br>More than 5000 people
+                            <br>${comsize!}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-bookmark"></i> Website </span>
-                            <br><a href="http://www.starbucks.com.sg/" target="_blank">www.starbucks.com.sg</a>
+                            <br><a href="${comweb!}" target="_blank">${comweb!}</a>
                         </div>
                     </div>                        
                 </div>

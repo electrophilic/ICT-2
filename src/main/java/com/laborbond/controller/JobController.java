@@ -84,7 +84,7 @@ public class JobController {
         if (accountType != null && "company".equals(accountType)) {
             Job job = new Job();
             job.id = jobId;
-            job.offer.Id = comId;
+            job.offer.setId((int) comId);
             job.title = title;
             job.info = otherInfo;
             job.location = location;
@@ -117,6 +117,13 @@ public class JobController {
         model.addAttribute("cmin", job.cmin);
         model.addAttribute("cmax", job.cmax);
         model.addAttribute("type", job.type);
+        model.addAttribute("compic", job.offer.getPicAddr());
+        model.addAttribute("cominfo", job.offer.getInfo());
+        model.addAttribute("comid", job.offer.getId());
+        model.addAttribute("comno", job.offer.getNo());
+        model.addAttribute("comind", job.offer.getIndustry());
+        model.addAttribute("comsize", job.offer.getSize());
+        model.addAttribute("comweb", job.offer.getWeb());
         return "job-details";
     }
     

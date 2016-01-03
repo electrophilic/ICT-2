@@ -1,3 +1,4 @@
+//a/A
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -108,11 +109,12 @@ public class EmployeeServiceImpl implements EmployeeService {
             industry[n] = "%" + industry[n] + "%";
             sql = sql + " OR LOWER(`em_industry`) LIKE LOWER(?)";
         }
-        sql = sql + ")";
+        sql = sql + ") AND ( `em_time`>?)";
         ArrayList param = new ArrayList();
         param.addAll(Arrays.asList(text));
         param.addAll(Arrays.asList(location));
         param.addAll(Arrays.asList(industry));
+        param.add(emSearch.date);
         emInfo = jdbcTemplate.query(sql, param.toArray(), new EmRowMapperEmInfo());
 
         return emInfo;

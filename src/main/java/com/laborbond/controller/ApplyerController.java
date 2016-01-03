@@ -256,7 +256,7 @@ public class ApplyerController {
     public String search(
             @RequestParam(value = "s", required = false) String key,
             @RequestParam(value = "ind", required = false) String[] ind,
-            @RequestParam(value = "date", required = false) Integer date,
+            @RequestParam(value = "date", required = false) Long date,
             @RequestParam(value = "loc", required = false) String[] loc,
             ModelMap model
     ) {
@@ -264,12 +264,12 @@ public class ApplyerController {
         ind = ind == null ? empty : ind;
         loc = loc == null ? empty : loc;
         key = key == null ? "" : key;
-        date = date == null ? 0 : date;
+
         EmSearch k = new EmSearch();
         k.text = key;
         k.industry = ind;
         k.location = loc;
-        k.date = 86400000*date;
+        k.date = date == null ? 0 : (System.currentTimeMillis()-86400000l*date);
         List<EmInfo> em = employeeService.search(k);
         model.addAttribute("s", key);
         model.addAttribute("res", em);

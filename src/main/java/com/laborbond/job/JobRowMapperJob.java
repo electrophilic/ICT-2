@@ -23,7 +23,7 @@ public class JobRowMapperJob implements RowMapper<Job> {
         ComInfo offer=new ComInfo();
         u.setOffer(offer);
         u.id=rs.getInt("job_id");
-        u.offer.Id =rs.getInt("com_id");
+        u.offer.setId(rs.getInt("com_id"));
         u.title = rs.getString("job_title");
         u.info= rs.getString("job_info");
         u.location = rs.getString("job_location");
@@ -36,20 +36,20 @@ public class JobRowMapperJob implements RowMapper<Job> {
         u.type = rs.getString("job_type");
         u.time = rs.getLong("job_time");
         u.state = rs.getInt("job_state");
-        u.offer.name=rs.getString("com_name");
-        u.offer.pic=rs.getString("com_photo");
-        u.offer.info=rs.getString("com_info");
-        u.offer.no=rs.getString("com_no");
-        u.offer.web = rs.getString("com_web");
-        u.offer.size = rs.getString("com_size");
-        u.offer.u_fname = rs.getString("com_u_fname");
-        u.offer.u_lname = rs.getString("com_u_lname");
-        u.offer.email = rs.getString("com_email");
-        u.offer.tel = rs.getString("com_tel");
-        u.offer.address = rs.getString("com_address");
-        u.offer.lati = rs.getDouble("com_lati");
-        u.offer.longi = rs.getDouble("com_longi");
-        u.offer.industry = rs.getString("com_industry");
+        u.offer.setName(rs.getString("com_name"));
+        u.offer.setPic(rs.getString("com_photo"));
+        u.offer.setInfo(rs.getString("com_info"));
+        u.offer.setNo(rs.getString("com_no"));
+        u.offer.setWeb(rs.getString("com_web"));
+        u.offer.setSize(rs.getString("com_size"));
+        u.offer.setU_fname(rs.getString("com_u_fname"));
+        u.offer.setU_lname(rs.getString("com_u_lname"));
+        u.offer.setEmail(rs.getString("com_email"));
+        u.offer.setTel(rs.getString("com_tel"));
+        u.offer.setAddress(rs.getString("com_address"));
+        u.offer.setLati(rs.getDouble("com_lati"));
+        u.offer.setLongi(rs.getDouble("com_longi"));
+        u.offer.setIndustry(rs.getString("com_industry"));
         return u;
 
     }

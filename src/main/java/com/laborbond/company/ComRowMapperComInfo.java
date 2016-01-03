@@ -19,22 +19,22 @@ public class ComRowMapperComInfo implements RowMapper<ComInfo> {
     @Override
     public ComInfo mapRow(ResultSet rs,int i) throws SQLException {  
         ComInfo u=new ComInfo();
-        u.Id=rs.getInt("com_id");
-        u.name=rs.getString("com_name");
-        u.pic=rs.getString("com_photo");
-        u.info=rs.getString("com_info");
-        u.no=rs.getString("com_no");
-        u.web = rs.getString("com_web");
-        u.info = rs.getString("com_info");
-        u.size = rs.getString("com_size");
-        u.u_fname = rs.getString("com_u_fname");
-        u.u_lname = rs.getString("com_u_lname");
-        u.email = rs.getString("com_email");
-        u.tel = rs.getString("com_tel");
-        u.address = rs.getString("com_address");
-        u.lati = rs.getDouble("com_lati");
-        u.longi = rs.getDouble("com_longi");
-        u.industry = rs.getString("com_industry");
+        u.setId(rs.getInt("com_id"));
+        u.setName(rs.getString("com_name"));
+        u.setPic(rs.getString("com_photo"));
+        u.setInfo(rs.getString("com_info"));
+        u.setNo(rs.getString("com_no"));
+        u.setWeb(rs.getString("com_web"));
+        u.setInfo(rs.getString("com_info"));
+        u.setSize(rs.getString("com_size"));
+        u.setU_fname(rs.getString("com_u_fname"));
+        u.setU_lname(rs.getString("com_u_lname"));
+        u.setEmail(rs.getString("com_email"));
+        u.setTel(rs.getString("com_tel"));
+        u.setAddress(rs.getString("com_address"));
+        u.setLati(rs.getDouble("com_lati"));
+        u.setLongi(rs.getDouble("com_longi"));
+        u.setIndustry(rs.getString("com_industry"));
     
         return u;
 

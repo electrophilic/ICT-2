@@ -50,7 +50,7 @@ public class JobServiceImpl implements JobService{
     public void postJob(Job job) {
         String sql = "INSERT INTO `job_id` (`com_id`,`job_title`, `job_info`, `job_location`, `job_request`, `job_respon`, `job_apply`, `job_industry`, `job_time`) VALUES(?,?,?,?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.update(sql, new Object[] { job.offer.Id,job.title,job.info,job.location,job.request,job.respon,job.apply,job.industry,job.time});
+        jdbcTemplate.update(sql, new Object[] { job.offer.getId(),job.title,job.info,job.location,job.request,job.respon,job.apply,job.industry,job.time});
         
         sql = "INSERT INTO `job_filter` (`job_cmin`, `job_cmax`,`job_type`) VALUES(?,?,?)";
         jdbcTemplate.update(sql, new Object[] { job.cmin,job.cmax,job.type});

@@ -54,30 +54,30 @@ public class EmployerController {
         String type = (String) session.getAttribute("type");
         if (type != null) {
             ComInfo c = new ComInfo();
-            c.Id = (Integer) session.getAttribute("id");
-            c.name = name;
-            c.no = regNo;
-            c.pic = photo.getOriginalFilename();
-            c.web = web;
-            c.info = info;
-            c.size = size;
-            c.u_fname = "";
-            c.u_lname = "";
-            c.email = companyEmail;
-            c.tel = tel;
-            c.address = address;
-            c.lati = 0;
-            c.longi = 0;
-            c.industry = industry;
+            c.setId((int) (Integer) session.getAttribute("id"));
+            c.setName(name);
+            c.setNo(regNo);
+            c.setPic(photo.getOriginalFilename());
+            c.setWeb(web);
+            c.setInfo(info);
+            c.setSize(size);
+            c.setU_fname("");
+            c.setU_lname("");
+            c.setEmail(companyEmail);
+            c.setTel(tel);
+            c.setAddress(address);
+            c.setLati(0);
+            c.setLongi(0);
+            c.setIndustry(industry);
             String rootPath = session.getServletContext().getRealPath("/resources/");
-            File dir = new File(rootPath + File.separator + "uploadFiles" + File.separator + "employer" + File.separator + c.Id);
+            File dir = new File(rootPath + File.separator + "uploadFiles" + File.separator + "employer" + File.separator + c.getId());
             if (!dir.exists()) {
                 dir.mkdirs();
             }
             try {
-                fileUpload(photo, c.pic, dir);
+                fileUpload(photo, c.getPic(), dir);
             } catch (Exception ex) {
-                c.pic=prvPhoto;
+                c.setPic(prvPhoto);
             }
             companyService.updateComInfo(c);
             return "redirect:/dash";
@@ -105,20 +105,20 @@ public class EmployerController {
     }
     
     private void map(ModelMap model, ComInfo c){
-        model.addAttribute("id", c.Id);
-        model.addAttribute("name", c.name);
-        model.addAttribute("no", c.no);
+        model.addAttribute("id", c.getId());
+        model.addAttribute("name", c.getName());
+        model.addAttribute("no", c.getNo());
         model.addAttribute("pic", c.getPicAddr());
-        model.addAttribute("picprv", c.pic);
-        model.addAttribute("web", c.web);
-        model.addAttribute("info", c.info);
-        model.addAttribute("size", c.size);
-        model.addAttribute("cemail", c.email);
-        model.addAttribute("tel", c.tel);
-        model.addAttribute("address", c.address);
-        model.addAttribute("lati", c.lati);
-        model.addAttribute("longi", c.longi);
-        model.addAttribute("industry", c.industry);
+        model.addAttribute("picprv", c.getPic());
+        model.addAttribute("web", c.getWeb());
+        model.addAttribute("info", c.getInfo());
+        model.addAttribute("size", c.getSize());
+        model.addAttribute("cemail", c.getEmail());
+        model.addAttribute("tel", c.getTel());
+        model.addAttribute("address", c.getAddress());
+        model.addAttribute("lati", c.getLati());
+        model.addAttribute("longi", c.getLongi());
+        model.addAttribute("industry", c.getIndustry());
     }
     
     @RequestMapping(value = "/employer/deletejob", method = RequestMethod.POST)

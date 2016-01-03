@@ -30,11 +30,11 @@
                     <a href="/job/${r.id!}" class="featured applied">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="/resources/images/companies/company2.jpg" alt="" class="img-responsive" />
+                                <img src="${r.offer.picAddr!}" alt="" class="img-responsive" />
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                                 <h5>${r.title!}</h5>
-                                <p><strong>${r.comName!}</strong></p>
+                                <p><strong>${r.offer.name!}</strong></p>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
                                 <p><strong>${r.location!}</strong></p>
