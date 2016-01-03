@@ -83,6 +83,9 @@ public class ApplyerController {
             @RequestParam(value = "experience-dates", required = false) String[] experienceDates,
             @RequestParam(value = "job-title", required = false) String[] jobTitles,
             @RequestParam(value = "responsibilities", required = false) String[] responsibilities,
+            @RequestParam(value = "resume-pic-prv", required = false) String prvPhoto,
+            @RequestParam(value = "resume-doc-prv", required = false) String prvDoc,
+            @RequestParam(value = "resume-dob-prv", required = false) Long prvDob,
             @RequestParam(value = "dobday") Integer dobDay,
             @RequestParam(value = "dobmonth") Integer dobMonth,
             @RequestParam(value = "dobyear") Integer dobYear) {
@@ -90,15 +93,16 @@ public class ApplyerController {
         String accountType = (String) session.getAttribute("type");
         // we need to use either person or employee, do not use both of them
         if (accountType != null && "employee".equals(accountType)) {
-            dobDay = dobDay == null ? 1 : dobDay;
-            dobMonth = dobMonth == null ? 1 : dobMonth;
-            dobYear = dobYear == null ? 1970 : dobYear;
-            Calendar dob = Calendar.getInstance();
-            dob.set(dobYear, dobMonth - 1/*in java, month also start with 0*/, dobDay);
             EmInfo emInfo = new EmInfo();
             emInfo.time=System.currentTimeMillis();
             emInfo.setPic(photo.getOriginalFilename());
-            emInfo.setBirth(dob.getTimeInMillis());
+            if(dobDay != null&&dobMonth != null&&dobYear != null){
+                Calendar dob = Calendar.getInstance();
+                dob.set(dobYear, dobMonth - 1/*in java, month also start with 0*/, dobDay);
+                emInfo.setBirth(dob.getTimeInMillis());
+            }else{
+                emInfo.setBirth(prvDob==null?0:prvDob);
+            }
             emInfo.setTel(contactNumber);
             emInfo.setInfo(about);
             emInfo.setSkill(skill);
@@ -111,6 +115,16 @@ public class ApplyerController {
             File dir = new File(rootPath + File.separator + "uploadFiles" + File.separator + "resume" + File.separator + emInfo.getId());
             if (!dir.exists()) {
                 dir.mkdirs();
+            }
+            try {
+                fileUpload(photo, emInfo.getPic(), dir);
+            } catch (Exception ex) {
+                emInfo.pic=prvPhoto==null?"":prvPhoto;
+            }
+            try {
+                fileUpload(resumeFile, emInfo.getDoc(), dir);
+            } catch (Exception ex) {
+                emInfo.doc=prvDoc==null?"":prvDoc;
             }
             employeeService.updateEmInfo(emInfo);
             Map<String, Skill> skillMap = getSkillMap();
@@ -125,18 +139,7 @@ public class ApplyerController {
                 }
                 skillService.addSkill(emInfo.Id, skillList, "employee");
             }
-
-            //String msg = "";
-            try {
-                fileUpload(photo, emInfo.getPic(), dir);
-            } catch (Exception ex) {
-                //msg += ex.getMessage();
-            }
-            try {
-                fileUpload(resumeFile, emInfo.getDoc(), dir);
-            } catch (Exception ex) {
-                //msg += ex.getMessage();
-            }
+            
             employeeService.clearEmExp(emInfo.getId());
             employeeService.clearEmEdu(emInfo.getId());
             if (schools != null) {
@@ -185,7 +188,7 @@ public class ApplyerController {
         model.addAttribute("title", emInfo.getTitle());
         model.addAttribute("email", user.email);
         if (emInfo.pic != null&&!"".equals(emInfo.pic)) {
-            model.addAttribute("pic", emInfo.getPic());
+            model.addAttribute("pic", emInfo.getPicAddr());
         }
         if (emInfo.doc != null&&!"".equals(emInfo.doc)) {
             model.addAttribute("doc", emInfo.getDocAddr());
@@ -225,17 +228,15 @@ public class ApplyerController {
         List<EmEdu> emEdu = employeeService.getEmEdu(id);
         List<Skill> keySkill = skillService.getSkill(id, "employee");
         List<Job> jobs = jobService.getJobByEmId(id);
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(emInfo.getBirth() * 1000);
         model.addAttribute("fullname", String.format("%s %s", emInfo.getFname(), emInfo.getLname()));
         model.addAttribute("title", emInfo.getTitle());
-        model.addAttribute("pic", "/resources/uploadFiles/resume/" + id + "/" + emInfo.getPic());
-        model.addAttribute("doc", "/resources/uploadFiles/resume/" + id + "/" + emInfo.getDoc());
+        model.addAttribute("pic", emInfo.getPic());
+        model.addAttribute("doc", emInfo.getDoc());
         model.addAttribute("about", emInfo.getInfo());
         model.addAttribute("skill", emInfo.getSkill());
         model.addAttribute("location", emInfo.getLocation());
         model.addAttribute("phone", emInfo.getTel());
-        model.addAttribute("dob", new SimpleDateFormat("yy/MM/dd").format(cal.getTime()));
+        model.addAttribute("dob", Long.toString(emInfo.birth));
 
         model.addAttribute("keyskill", keySkill);
         model.addAttribute("experience", emExp);
@@ -246,7 +247,6 @@ public class ApplyerController {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(ApplyerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        model.addAttribute("resume", "http://localhost:8080/resources/uploadFiles/resume/" + id + "/" + emInfo.getDoc());
 
         return "account-personal";
 

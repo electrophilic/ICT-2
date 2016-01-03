@@ -29,6 +29,10 @@
                         <div role="tabpanel" class="tab-pane" id="myResume">
                             <form id="resume-form" class="editor-form" action="/employee/update" enctype="multipart/form-data" method="post">
                                 <!-- Resume Details Start -->
+                                <input type="hidden" name="resume-pic-prv" value="${pic!}">
+                                <input type="hidden" name="resume-doc-prv" value="${doc!}">
+                                <input type="hidden" name="resume-dob-prv" value="${dob!}">
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <h2>Resume details</h2>
