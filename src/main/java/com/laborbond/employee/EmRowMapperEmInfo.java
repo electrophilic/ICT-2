@@ -30,6 +30,7 @@ public class EmRowMapperEmInfo implements RowMapper<EmInfo> {
         u.industry=rs.getString("em_industry");
         u.location=rs.getString("em_location");
         u.doc=rs.getString("em_doc");
+        u.time = rs.getLong("em_time");
         return u;
 
 

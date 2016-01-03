@@ -1,0 +1,28 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal"><i class="fa fa-remove fa-lg"></i></a>
+        <h2>Candidates Applied</h2>
+    </div>
+    <div class="modal-body">
+        <form>
+            <table class="tablesaw" data-tablesaw-sortable data-tablesaw-sortable-switch>
+                <thead>
+                    <tr>
+                        <th data-tablesaw-sortable-col data-tablesaw-sortable-default-col><i class="fa fa-user"></i> Candidate</th>
+                        <th><i class="fa fa-circle-o-notch fa-spin"></i> Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <#list applyerlist as e>
+                        <tr>
+                            <td class="title">${e.fname!} ${e.lname!}</td>
+                            <td class="action">
+                                <a href="/resume/${e.id!}"><i class="fa fa-sticky-note-o"></i> View Resume</a>
+                            </td>
+                        </tr>
+                    </#list>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

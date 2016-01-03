@@ -11,23 +11,30 @@ package com.laborbond.company;
  */
 public class ComInfo {//employee infomation
     public int Id ;
-    public String sname ;
-    public String lname;
+    public String name;
     public String no;
     public String pic;
     public String web;
-    public String facebook;
-    public String google;
-    public String twister;
     public String info;
     public String size;
     public String u_fname;
     public String u_lname;
+    public String email;
+    public String tel;
+    public String address;
+    public double lati;
+    public double longi;
+    public String industry;
+    
 
 
 
     public ComInfo() {
         
+    }
+    
+    public String getPicAddr() {
+        return (pic != null && !"".equals(pic)) ? "/resources/uploadFiles/employer/" + Id + "/" + pic : "/resources/images/logo.png";
     }
 
     

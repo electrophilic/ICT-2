@@ -7,17 +7,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="LaborBond - Finding Jobs That You Have Been Dreaming For">
         <meta name="author" content="LaborBond By GOTG Team">
-        <title>LaborBond - Finding Jobs That You Have Been Dreaming For</title>
+        <title>LaborBond | ${ptitle!}</title>
 
-        <link rel="shortcut icon" href="resources/images/favicon.png">
+        <link rel="shortcut icon" href="/resources/images/favicon.png">
 
         <!-- Main Stylesheet -->
-        <link href="resources/css/style.css" rel="stylesheet"> 
+        <link href="/resources/css/style.css" rel="stylesheet"> 
 
         <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-        <script src="resources/js/html5shiv.js"></script>
-        <script src="resources/js/respond.min.js"></script>
+        <script src="/resources/js/html5shiv.js"></script>
+        <script src="/resources/js/respond.min.js"></script>
         <![endif]-->
     </head>
 
@@ -40,33 +40,36 @@
                     <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
                 </div>
                 <ul class="nav">
-                    <li class="active"><a href="home.html">Home</a></li>
+                    <li class="active"><a href="/">Home</a></li>
                     <li class="vis_menu"><a data-target="#register" data-toggle="modal">Register</a></li>
                     <li class="vis_menu"><a data-target="#login" data-toggle="modal">Login</a></li>
-                    <li class="cand_menu logout"><a href="/">Logout</a></li>
-                    <li class="com_menu logout"><a href="/">Logout</a></li>
+                    <li class="cand_menu logout"><a href="/logout">Logout</a></li>
+                    <li class="com_menu logout"><a href="/logout">Logout</a></li>
                     <hr>
-                    <li><a href="find-jobs.html">Find A Job</a></li>
-                    <li><a href="find-candidates.html">Find A Candidate</a></li>
+                    <li><a href="/find/job">Find A Job</a></li>
+                    <li><a href="/find/candidates">Find A Candidate</a></li>
                     <span class="cand_menu"><hr></span>
-                    <li class="cand_menu"><a href="#">Candidate</a>
-                        <ul>
-                            <li><a href="account-personal.html">My Account</a></li>
-                            <li><a href="post-a-resume.html">Post A Resume</a></li>
-                            <li><a href="resume.html">My Resume</a></li>
-                        </ul>
-                    </li>
-                    <span class="com_menu"><hr></span>
-                    <li class="com_menu"><a href="#">Company</a>
+                    <li class="cand_menu"><a href="/dash">Candidate</a>
                         <ul>                            
-                            <li><a href="account-company.html">My Account</a></li>
-                            <li><a href="post-a-job.html">Post A Job</a></li>
-                            <li><a href="company.html">My Company</a></li>
+                            <li><a href="/dash#account">Account</a></li>
+                            <li><a href="/dash#resume">Resume</a></li>
+                            <li><a href="/dash#job">job</a></li>
                         </ul>
                     </li>
+                    <li class="cand_menu" id="my_rsm"></li>
+                    <span class="com_menu"><hr></span>
+                    <li class="com_menu"><a href="/dash">Company</a>
+                        <ul>                            
+                            <li><a href="/dash#account">Account</a></li>
+                            <li><a href="/dash#account">Company</a></li>
+                            <li><a href="/dash#job">job</a></li>
+                        </ul>
+                    </li>
+                    <li class="com_menu"><a href="/job/post/">Post A Job</a></li>
+                    <li class="com_menu" id="my_com"></li>
                     <hr>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/testimonials">Testimonials</a></li>
                 </ul>
             </div>
             <!-- end Menu -->
@@ -79,19 +82,19 @@
         <header>
             <div id="header-background"></div>
             <div class="container">
-                <div class="pull-left">
-                    <div id="logo">
-                        <a href="home.html"><img src="resources/images/logo.png" alt="LaborBond Logo" /></a>
-                    </div>
-                </div>
-                <div id="menu-open" class="pull-right">
+                <div id="menu-open" class="pull-left">
                     <a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
                 </div>
+                <div class="pull-left">
+                    <div id="logo">
+                        <a href="/"><img src="/resources/images/logo.png" alt="LaborBond Logo" /></a>
+                    </div>
+                </div>
                 <div id="searchbox" class="pull-right">
-                    <form>
+                    <form action="/find/job">
                         <div class="form-group">
                             <label class="sr-only" for="searchfield">Searchbox</label>
-                            <input type="text" class="form-control" id="searchfield" placeholder="Type keywords and press enter">
+                            <input type="text" class="form-control" id="searchfield" name="s" placeholder="Type keywords and press enter">
                         </div>
                     </form>
                 </div>

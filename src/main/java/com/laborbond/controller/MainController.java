@@ -6,19 +6,13 @@
 package com.laborbond.controller;
 
 import javax.servlet.http.HttpSession;
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- *
- * @author hy
- */
 @Controller
 public class MainController{
  
@@ -27,18 +21,22 @@ public class MainController{
       return "home";
    }
    
-   @RequestMapping(value = "/{page}.html", method = RequestMethod.GET)
-   public String staticMapping(ModelMap model, @PathVariable("page") String page) {
-       
-      return page;
+   @RequestMapping(value = "/about", method = RequestMethod.GET)
+   public String about(ModelMap model) {       
+      return "about";
    }
-   //for debug only
+   
+   @RequestMapping(value = "/testimonials", method = RequestMethod.GET)
+   public String feedback(ModelMap model) {       
+      return "testimonials";
+   }
+   
     @RequestMapping(value = "/realpath", method = RequestMethod.GET)
     @ResponseBody
     public String test(HttpSession session,@RequestParam(value = "path") String path) {
         return session.getServletContext().getRealPath(path);
     }
-   
+       
 }
    
    

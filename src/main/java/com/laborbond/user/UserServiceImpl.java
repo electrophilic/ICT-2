@@ -38,11 +38,15 @@ public class UserServiceImpl implements UserService{
         sql = "select * from company_id where com_email= ?";  
         userListCom = jdbcTemplate.query(sql,new Object[]{email}, new UserRowMapperComId());
         
-        if( userListEm.isEmpty() ){
-        }else return "employee";
-        if( userListCom.isEmpty()){
-            
-        }else{return "company";}
+        if (userListEm.isEmpty()) {
+        } else {
+            return "employee";
+        }
+        if (userListCom.isEmpty()) {
+
+        } else {
+            return "company";
+        }
         return "free";
     }
 
@@ -52,12 +56,12 @@ public class UserServiceImpl implements UserService{
             String userId , userInfo;
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             if(user.getType().equals("company")){
-                userId = "INSERT INTO `company_id` (`com_email`, `com_password`) VALUES(?,?)";
-                userInfo = "INSERT INTO `company_info` (`com_lname`,`com_u_fname`, `com_u_lname`) VALUES(?,?,?)";
+                userId = "INSERT INTO `company_id` (`com_email`, `com_password`) VALUES(?,PASSWORD(?))";
+                userInfo = "INSERT INTO `company_info` (`com_name`,`com_u_fname`, `com_u_lname`) VALUES(?,?,?)";
                 jdbcTemplate.update(userId, new Object[] { user.email,password});
                 jdbcTemplate.update(userInfo, new Object[] { user.comname, user.fname,user.lname});
-            }else{
-                userId = "INSERT INTO `employee_id` (`em_email`, `em_password`) VALUES(?,?)";
+            } else{
+                userId = "INSERT INTO `employee_id` (`em_email`, `em_password`) VALUES(?,PASSWORD(?))";
                 userInfo = "INSERT INTO `employee_info` (`em_fname`, `em_lname`) VALUES(?,?)";
                 jdbcTemplate.update(userId, new Object[] { user.email,password});
                 jdbcTemplate.update(userInfo, new Object[] { user.fname,user.lname});
@@ -75,7 +79,7 @@ public class UserServiceImpl implements UserService{
         User a=null;
         if(type.equals("company")){
 
-            sql = "SELECT * FROM  `company_id` WHERE `com_email` = ? AND `com_password` = ?";
+            sql = "SELECT * FROM  `company_id` WHERE `com_email` = ? AND `com_password` = PASSWORD(?)";
             
             try{
             a = (User)jdbcTemplate.queryForObject(sql,new Object[]{user.email,password}, new UserRowMapperComId());   
@@ -87,7 +91,7 @@ public class UserServiceImpl implements UserService{
             }
         }
         if(type.equals("employee")){
-            sql = "SELECT * FROM  `employee_id` WHERE `em_email` =  ? AND `em_password` = ?";
+            sql = "SELECT * FROM  `employee_id` WHERE `em_email` =  ? AND `em_password` = PASSWORD(?)";
             try{
             a = (User) jdbcTemplate.queryForObject(sql,new Object[]{user.email,password}, new UserRowMapperEmId());
             }catch(EmptyResultDataAccessException e){
@@ -116,7 +120,45 @@ public class UserServiceImpl implements UserService{
             User a = (User) jdbcTemplate.queryForObject(sql,new Object[]{id}, new UserRowMapperEmId());
             return a;
         }
+     
+    }
+    
+    @Override
+    public boolean updateEmail(int id, String email, String type) {
+        String sql = "";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String check = checkEmail(email);
+        if(check.equals("free")){
+        if(type.equals("company")){
 
+            sql = "Update `company_id` SET `com_email` = ? WHERE `com_id` = ?";
+            jdbcTemplate.update(sql, new Object[] { email,id});
+            
+        }else{
+            sql = "Update `employee_id` SET `em_email` = ? WHERE `em_id` = ?";
+            jdbcTemplate.update(sql, new Object[] { email,id});
+        }
+        return true;
+        }
+        else{
+            return false;
+        }
+    }
+        
+        
+    @Override
+    public void updatePassword(int id, String password, String type) {
+        String sql = "";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
+        if(type.equals("company")){
+
+            sql = "Update `company_id` SET `com_password` = PASSWORD(?) WHERE `com_id` = ?";
+            jdbcTemplate.update(sql, new Object[] { password,id});
+            
+        }else{
+            sql = "Update `employee_id` SET `em_password` = PASSWORD(?) WHERE `em_id` = ?";
+            jdbcTemplate.update(sql, new Object[] { password,id});
+        }
     }
     
    

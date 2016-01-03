@@ -612,6 +612,7 @@
             $('#requirements').val($('#job-requirements').html());
             $('#other_info').val($('#other-information').html());
             $('#apply').val($('#job-apply').html());
+            $('#com-info').val($('#acc-about-com').html());
         });
 
         // ====================================================================

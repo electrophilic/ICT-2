@@ -1,3 +1,4 @@
+<#assign ptitle = "Job Details">
 <#include "header.html">
 
 <!-- ============ TITLE START ============ -->
@@ -36,14 +37,17 @@
                     <h3>How to apply</h3>
                     <p>${apply!}</p>
                     <p>
-                        <a href="#" class="btn btn-primary btn-lg">Apply Here</a>
+                        ${applyerr!}
+                    </p>
+                    <p>
+                        <a href="/job/apply?jobId=${id!}" class="btn btn-primary btn-lg">Apply Here</a>
                     </p>
                 </article>
             </div>
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="company">
                     <h2>About this company</h2>
-                    <p><img src="resources/images/jobs/job2.jpg" alt="" class="img-responsive-logo"></p>
+                    <p><img src="/resources/images/jobs/job2.jpg" alt="" class="img-responsive-logo"></p>
                     <p>Starbucks Coffee Singapore is a wholly owned subsidiary of Starbucks Coffee Corporation since June 2004. The first Starbucks store opened on 14 December 1996 at Liat Towers, strategically located along the nation's renowned Orchard Road shopping belt.</p>
                     <p><a href="company.html" class="btn btn-primary" target="_blank">Read more</a></p>
                 </div>

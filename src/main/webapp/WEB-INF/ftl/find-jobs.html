@@ -1,3 +1,4 @@
+<#assign ptitle = "Find Jobs">
 <#include "header.html">
 
 <!-- ============ TITLE START ============ -->
@@ -21,35 +22,37 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>Available Jobs</h2>
-
+                <p>Found ${count!} job(s)</p>
                 <div class="jobs">
 
                     <!-- Job offer 1 -->
-                    <a href="job-details.html" class="featured applied">
+                    <#list res as r>
+                    <a href="/job/${r.id!}" class="featured applied">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="resources/images/companies/company2.jpg" alt="" class="img-responsive" />
+                                <img src="/resources/images/companies/company2.jpg" alt="" class="img-responsive" />
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-                                <h5>Web Designer</h5>
-                                <p><strong>Amazon Inc.</strong></p>
+                                <h5>${r.title!}</h5>
+                                <p><strong>${r.comName!}</strong></p>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-                                <p><strong>Singapore - Central</strong></p>
-                                <p class="hidden-xs"><b>Industry:</b> Oil / Gas / Petroleum</p>
+                                <p><strong>${r.location!}</strong></p>
+                                <p class="hidden-xs"><b>Industry:</b> ${r.industry!}</p>
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-                                <p class="job-salary"><strong>$128,000</strong></p>
-                                <p class="badge full-time">Full time</p>
+                                <p class="job-salary"><strong>$${r.cmin!}</strong></p>
+                                <p class="badge full-time">${r.type!}</p>
                             </div>
                         </div>
                     </a>
+                    </#list>
 
-                    <!-- Job offer 2 -->
+                    <!-- Job offer 2 
                     <a href="job-details.html" class="featured">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="resources/images/companies/company4.jpg" alt="" class="img-responsive" />
+                                <img src="/resources/images/companies/company4.jpg" alt="" class="img-responsive" />
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                                 <h5>Front End Developer</h5>
@@ -66,11 +69,11 @@
                         </div>
                     </a>
 
-                    <!-- Job offer 3 -->
+                     Job offer 3 
                     <a href="job-details.html" class="applied">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="resources/images/companies/company3.jpg" alt="" class="img-responsive" />
+                                <img src="/resources/images/companies/company3.jpg" alt="" class="img-responsive" />
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                                 <h5>Back End Developer</h5>
@@ -86,14 +89,14 @@
                             </div>
                         </div>
                     </a>
-
+-->
                 </div>
 
-                <nav>
+                <!--<nav>
                     <a class="btn btn-primary" style="margin-top: 25px;">
                         <span>Show More Jobs <i class="fa fa-arrow-down"></i></span>
                     </a>
-                </nav>
+                </nav>-->
 
             </div>
             <div class="col-sm-4" id="sidebar">
@@ -101,12 +104,12 @@
                 <!-- Filtering a Job Start -->
                 <div class="sidebar-widget" id="jobsearch">
                     <h2>Filter Requirements</h2>
-                    <form>
+                    <form action="/find/job" method="get" id="sjform">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group" id="job-search-group">
                                     <label for="job-search" class="sr-only">Search</label>
-                                    <input type="text" class="form-control" id="job-search" placeholder="Type and press enter">
+                                    <input type="text" class="form-control" id="job-search" name="s" value="${s!}" placeholder="Type and press enter">
                                 </div>
                             </div>
                         </div>
@@ -120,27 +123,27 @@
                                 <h5>Job Type</h5>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> All
+                                        <input id="job-type-all" type="checkbox"> All
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Part Time
+                                        <input class="job-type" name="type" value="Part Time" type="checkbox"> Part Time
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Full Time
+                                        <input class="job-type" name="type" value="Full Time" type="checkbox"> Full Time
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Internship
+                                        <input class="job-type" name="type" value="Internship" type="checkbox"> Internship
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Others
+                                        <input class="job-type" name="type" value="Others" type="checkbox"> Others
                                     </label>
                                 </div>
                             </div>
@@ -148,27 +151,27 @@
                                 <h5>Industry</h5>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> All
+                                        <input id="job-ind-all" type="checkbox"> All
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Banking
+                                        <input class="job-ind" name="ind" value="Banking" type="checkbox"> Banking
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Tourism
+                                        <input class="job-ind" name="ind" value="Tourism" type="checkbox"> Tourism
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Marketing
+                                        <input class="job-ind" name="ind" value="Marketing" type="checkbox"> Marketing
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Others
+                                        <input class="job-ind" name="ind" value="Others" type="checkbox"> Others
                                     </label>
                                 </div>
                             </div>
@@ -183,31 +186,32 @@
                                 <h5>Location</h5>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> All
+                                        <input id="job-loc-all" type="checkbox"> All
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Singapore
+                                        <input class="job-loc" name="loc" value="Singapore" type="checkbox"> Singapore
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Malaysia
+                                        <input class="job-loc" name="loc" value="Malaysia" type="checkbox"> Malaysia
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> China
+                                        <input class="job-loc" name="loc" value="China" type="checkbox"> China
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Others
+                                        <input class="job-loc" name="loc" value="Others" type="checkbox"> Others
                                     </label>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-xs-12">
                                 <hr>
@@ -225,9 +229,11 @@
                                 <hr>
                             </div>
                         </div>
+                        <input id="cmin" type="hidden" name="cmin">
+                        <input id="cmax" type="hidden" name="cmax">
                         <div class="row">
                             <div class="col-xs-12">
-                                <a class="btn btn-primary">Apply Filters</a>
+                                <a id="job-search-apply" class="btn btn-primary">Apply Filters</a>
                             </div>
                         </div>
                     </form>

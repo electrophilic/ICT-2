@@ -8,7 +8,7 @@ acnt.warnmsg = function (msg, alert) {
     return '<div class="alert alert-' + alert + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + msg + '</div>';
 };
 
-acnt.setMenu = function (type) {
+acnt.setMenu = function (type, id) {
     if (type === "visitor") {
         $('.vis_menu').show();
         $('.com_menu').hide();
@@ -17,10 +17,12 @@ acnt.setMenu = function (type) {
         $('.vis_menu').hide();
         $('.com_menu').show();
         $('.cand_menu').hide();
+        $('#my_com').html('<a href="/employer/' + id + '">My Company</a>');
     } else {
         $('.vis_menu').hide();
         $('.com_menu').hide();
         $('.cand_menu').show();
+        $('#my_rsm').html('<a href="/resume/' + id + '">My Resume</a>');
     }
 
 };
@@ -40,11 +42,9 @@ acnt.register = function (formId, path, confirmId, warningBox) {
     }
     $.post(path, formObj, function (data) {
 
-        if (data === "suuccess") {
-            $('#register').fadeOut(300);
-            $("body").removeClass("no-scroll");
-            $("#login").fadeIn(300);
-            $("body").addClass("no-scroll");
+        if (data === "success") {
+            $('#register').modal('hide');
+            $("#login").modal('show');
             $('#login-warning').html(acnt.warnmsg('Congratulation! You have registered successfully, please login', 'success'));
         } else {
             $(warningBox).html(acnt.warnmsg('Sorry, your email are already being used', 'danger'));
@@ -67,6 +67,11 @@ acnt.getFormObj = function (f) {
     });
     return o;
 };
+
+acnt.closeModel = function () {
+    $('#login').modal('hide');
+};
+
 $('#login-btn').click(function (e) {
     e.preventDefault();
     var email = $('#login-email').val();
@@ -78,18 +83,22 @@ $('#login-btn').click(function (e) {
     $.post("/login", {"email": email, "pass": pass}, function (data) {
         var res = JSON.parse(data);
         if (res['state'] === "success") {
-            $('#login').fadeOut(300);
-            $("body").removeClass("no-scroll");
-            acnt.setMenu(res['type']);
+            acnt.closeModel();
+            acnt.setMenu(res['type'], res['id']);
+            acnt.getComUrl();
         } else {
             $('#login-warning').html(acnt.warnmsg('Email or password incorrect!', 'danger'));
         }
     });
 });
 
-$('.logout').click(function (e){
-    $.get("/logout",function(){
-        alert();
+$.post("/info", {}, function (data) {
+    var res = JSON.parse(data);
+    acnt.setMenu(res['type'], res['id']);
+});
+
+$('.logout').click(function (e) {
+    $.get("/logout", function () {
     });
 });
 
@@ -103,8 +112,53 @@ $('#register-com-btn').click(function (e) {
     acnt.register('#register-com', "/reg/company", '#register-com-password2', '#reg-company-warning');
 });
 
-$.post("/info", {}, function (data) {
-    var res = JSON.parse(data);
-    acnt.setMenu(res['type']);
+
+acnt.emDelJob = function (id) {
+    $.post("/employee/deletejob", {"id": id}, function (data) {
+        $('#job' + id).remove();
+    });
+};
+acnt.comDelJob = function (id) {
+    $.post("/employer/deletejob", {"id": id}, function (data) {
+        $('#jobtitle' + id).addClass("closed-job");
+        $('#jobdel' + id).remove();
+    });
+};
+
+
+
+$('#sub-com-info').click(function () {
+    $('#com-i').submit();
 });
 
+$("#job-search-apply").click(function () {
+    console.log("apply");
+    $("#cmin").val($("#salary-field-lower").html().replace("$", "").replace(".", ""));
+    $("#cmax").val($("#salary-field-upper").html().replace("$", "").replace(".", ""));
+    $('#sjform').submit();
+});
+
+$("#cand-search-apply").click(function () {
+    $('#scandform').submit();
+});
+
+var lsearch = {};
+lsearch.bindAll = function (all, target) {
+    $(all).change(function () {
+        var c = this.checked;
+        $(target).prop("checked", c);
+    });
+    $(target).change(function () {
+        if (this.checked) {
+
+        } else {
+            $(all).prop("checked", false);
+        }
+    });
+};
+lsearch.bindAll('#job-type-all', '.job-type');
+lsearch.bindAll('#job-ind-all', '.job-ind');
+lsearch.bindAll('#job-loc-all', '.job-loc');
+
+lsearch.bindAll('#cand-ind-all', '.cand-ind');
+lsearch.bindAll('#cand-loc-all', '.cand-loc');

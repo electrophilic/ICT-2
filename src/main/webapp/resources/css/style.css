@@ -1,11 +1,11 @@
 @import url(bootstrap.min.css);
 @import url(jquery.flexmenu.css);
 @import url(owl.carousel.css);
+@import url(tablesaw.css);
 @import url(animate.min.css);
 @import url(jquery.fancybox.css);
 @import url(jquery.nouislider.css);
 @import url(font-awesome.min.css);
-@import url(tablesaw.css);
 @import url(bootstrap-tokenfield.min.css);
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:700);
 
@@ -50,6 +50,10 @@ hr {
 .img-responsive-logo {
     max-height: 250px;
     width: auto;
+}
+
+#logo {
+    margin-left: 15px;
 }
 
 .img-responsive-about {

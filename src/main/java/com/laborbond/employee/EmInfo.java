@@ -10,8 +10,9 @@ package com.laborbond.employee;
  * @author Fu
  */
 public class EmInfo {//employee infomation
-    public int Id ;
-    public String pic ;
+
+    public int Id;
+    public String pic;
     public long birth;
     public String tel;
     public String info;
@@ -22,14 +23,14 @@ public class EmInfo {//employee infomation
     public String industry;
     public String location;
     public String doc;
+    public long time;
 
     public EmInfo() {
-        
+
     }
 
-    
-    public boolean isValid(){
-        return getId()!=-1;
+    public boolean isValid() {
+        return getId() != -1;
     }
 
     /**
@@ -51,6 +52,10 @@ public class EmInfo {//employee infomation
      */
     public String getPic() {
         return pic;
+    }
+    
+    public String getPicAddr() {
+        return (pic != null && !"".equals(pic)) ? "/resources/uploadFiles/resume/" + Id + "/" + pic : "/resources/images/logo.png";
     }
 
     /**
@@ -198,5 +203,9 @@ public class EmInfo {//employee infomation
      */
     public void setDoc(String doc) {
         this.doc = doc;
+    }
+    
+    public String getDocAddr() {
+        return (doc != null && !"".equals(doc)) ? "/resources/uploadFiles/resume/" + Id + "/" + doc : "";
     }
 }

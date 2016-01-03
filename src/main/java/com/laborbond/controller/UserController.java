@@ -65,17 +65,16 @@ public class UserController {
         }
         return res.toString();
     }
-    
-     @RequestMapping(value = "/logout")//add post when deployed
-    public @ResponseBody
-    String logout(HttpSession session) throws JSONException {
+
+    @RequestMapping(value = "/logout")//add post when deployed
+    public String logout(HttpSession session) throws JSONException {
         session.invalidate();
-        return "success";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/reg/{type}", method = RequestMethod.POST)
     public @ResponseBody
-    String personalRegister(
+    String register(
             @RequestParam(value = "f_name") String fName, @RequestParam(value = "l_name") String lName, @RequestParam(value = "com_name", required = false, defaultValue = "") String comName, @RequestParam(value = "email") String email, @RequestParam(value = "pass") String pass, @PathVariable("type") String type
     ) throws JSONException {
         User user = new User();
@@ -85,31 +84,67 @@ public class UserController {
         user.lname = lName;
         user.type = type;
         if (userService.register(user, pass)) {
-            return "suuccess";
+            return "success";
         } else {
             return "fail";
         }
 
     }
-    
+
     @RequestMapping(value = "/change/passwd", method = RequestMethod.POST)//add post when deployed
-    public @ResponseBody
-    String changePasswd(HttpSession session, @RequestParam(value = "passwd") String passwd) throws JSONException {
-        
-        Integer id=(Integer)session.getAttribute("id");
-        if(id!=null){
-            return "success";
-        } else {
-            return "fail";
+    public String changePasswd(HttpSession session, @RequestParam(value = "passwd") String passwd) throws JSONException {
+
+        String type = (String) session.getAttribute("type");
+        if (type != null) {
+            int id = (Integer) session.getAttribute("id");
+            userService.updatePassword(id, passwd, type);
         }
-        //return "success";
+        return "redirect:/dash";
     }
-    
+
     @RequestMapping(value = "/change/email", method = RequestMethod.POST)//add post when deployed
+    public String changeEmail(HttpSession session, @RequestParam(value = "email") String email, ModelMap model) throws JSONException {
+        String type = (String) session.getAttribute("type");
+        if (type != null) {
+            int id = (Integer) session.getAttribute("id");
+            if (!userService.updateEmail(id, email, type)) {
+                model.addAttribute("err", "Email already used");
+            };
+
+        }
+
+        return "redirect:/dash";
+
+    }
+
+    @RequestMapping(value = "/getemail")//add post when deployed
     public @ResponseBody
-    String changeEmail(HttpSession session, @RequestParam(value = "email") String email) throws JSONException {
-        return email;
-        //return "success";
+    String getEmail(HttpSession session) throws JSONException {
+        String type = (String) session.getAttribute("type");
+        if (type != null) {
+            int id = (Integer) session.getAttribute("id");
+            return userService.getUser(id, type).email;
+        }
+
+        return "";
+
+    }
+
+    @RequestMapping(value = "/dash")
+    public String dash(HttpSession session, ModelMap model) throws JSONException {
+        String type = (String) session.getAttribute("type");
+        if (type == null) {
+            return "timeout";
+        }
+        Integer id = (Integer) session.getAttribute("id");
+        User user = userService.getUser(id, type);
+        model.addAttribute("email", user.email);
+        if (type.equals("company")) {
+            return "forward:/empd";
+        } else {
+            return "forward:/apyd";
+        }
+
     }
 
 }

@@ -19,7 +19,11 @@ public interface UserService{
         //return true if success
         //return false if email already been user
         
-        public User getUser(int id, String type);  
+        public User getUser(int id, String type);
+        
+        public boolean updateEmail(int id, String email, String type);
+        
+        public void updatePassword(int id, String password, String type) ;
         
         public User login(User user, String password);  
         //return blank user if any thing wrong

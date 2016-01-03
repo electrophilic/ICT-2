@@ -23,9 +23,16 @@ public interface EmployeeService {
         
     public void deleteEmExp(int expId);
     
+    public void clearEmExp(int emId);
+    
     public List<EmEdu> getEmEdu(int emId);
         
     public void addEmEdu(EmEdu emEdu);
         
-    public void deleteEmEdu(int expId);
+    public void deleteEmEdu(int eduId);
+    
+    public void clearEmEdu(int emId);
+    
+    public List<EmInfo> search(EmSearch emSearch);
+    
 }

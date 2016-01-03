@@ -1,3 +1,4 @@
+<#assign ptitle = "Company Details">
 <#include "header.html">
 
 <!-- ============ TITLE START ============ -->
@@ -6,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <img src="resources/images/jobs/job2.jpg" class="img-responsive-logo" alt="" />
+                <img src="${pic!}" class="img-responsive-logo" alt="" />
             </div>
         </div>
     </div>
@@ -22,9 +23,7 @@
             <div class="col-sm-8">
                 <article>
                     <h2>About company</h2>
-                    <p>Singapore is the third international country outside North America to introduce Starbucks to its discerning customers who readily embrace the Starbucks Experience. Starbucks Coffee Singapore is a wholly owned subsidiary of Starbucks Coffee Corporation since June 2004. The first Starbucks store opened on 14 December 1996 at Liat Towers, strategically located along the nation's renowned Orchard Road shopping belt.</p>
-                    <p>Starbucks coffee houses offer more than the finest coffee sourced from across the globe. Friendly people, great music and a comfortable upbeat meeting place create the famous Starbucks Experience. The layout and atmosphere of Starbucks stores is specifically designed to be cosy and intimate, while at the same time providing people with their own personal space to use as they wish. The combination of sofas, armchairs, coffee tables and chairs, bars and stools, and meeting room tables means that there is something for everyone.</p>
-                    <p>Those looking for peace and quiet away from home or the office can relax and linger in a comfortable armchair and escape into a book, whilst those looking for an intimate place to meet friends can huddle on a sofa and chat over a mug of coffee, as they would in their own home.</p>
+                    ${info!}
                     <hr>
                     <h2>Location</h2>
 
@@ -67,7 +66,7 @@
                             //-----------------------------------------------------------------------
                             // Set up map pin position
 
-                            var latlng = new google.maps.LatLng(1.274929, 103.843549);
+                            var latlng = new google.maps.LatLng(${lati!}, ${longi!});
 
                             //-----------------------------------------------------------------------
                             // Set up map options
@@ -97,7 +96,7 @@
 
                             var image = {
                                 // Path to your map pin image
-                                url: 'resources/images/map-marker.png',
+                                url: '/resources/images/map-marker.png',
                                 // This marker is 40 pixels wide by 42 pixels tall.
                                 size: new google.maps.Size(40, 42),
                                 // The origin for this image is 0,0.
@@ -114,11 +113,12 @@
                                 map: map,
                                 icon: image,
                                 clickable: true,
-                                title: "Starbucks Store"
+                                // Put the n
+                                title: "${name!}"
                             });
 
                             myMarker.info = new google.maps.InfoWindow({
-                                content: "<b>Starbucks Store</b><br>100 Tras St<br>Singapore 079027"
+                                content: "${address!}"
                             });
 
                             google.maps.event.addListener(myMarker, 'click', function () {
@@ -139,20 +139,19 @@
                 <div class="sidebar-widget" id="share">
                     <h2>Share it</h2>
                     <ul>
-                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=${url!}"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://twitter.com/home?status=${url!}"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://plus.google.com/share?url=${url!}"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=laborbond.com%2Fcompany%2F${id!}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/home?status=laborbond.com%2Fcompany%2F${id!}"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://plus.google.com/share?url=laborbond.com%2Fcompany%2F${id!}"><i class="fa fa-google-plus"></i></a></li>
                     </ul>
                 </div>
                 <hr>
                 <div class="sidebar-widget" id="widget-contact">
                     <h2>Contact</h2>
                     <ul>
-                        <li><i class="fa fa-building"></i>Starbucks</li>
-                        <li><i class="fa fa-map-marker"></i>2 Madison Avenue</li>
-                        <li><i class="fa"></i>Singapore 398745</li>
-                        <li><i class="fa fa-phone"></i>01.22.987.8392</li>
-                        <li><i class="fa fa-envelope"></i><a href="mailto:company@yourdomain.com">Send an email</a></li>
+                        <li><i class="fa fa-building"></i>${name!}</li>
+                        <li><i class="fa fa-map-marker"></i>${address!}</li>
+                        <li><i class="fa fa-phone"></i>${tel!}</li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto:${cemail!}">Send an email</a></li>
                     </ul>
                     <br>
                     <hr>
@@ -160,22 +159,22 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-briefcase"></i> Registration No. </span>
-                            <br>CB1287566
+                            <br>${no!}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-industry"></i> Industry </span>
-                            <br>Accouting/Finance
+                            <br>${industry!}
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-users"></i> Company Size </span>
-                            <br>More than 5000 people
+                            <br>${size!}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-bookmark"></i> Website </span>
-                            <br><a href="http://www.starbucks.com.sg/" target="_blank">www.starbucks.com.sg</a>
+                            <br><a href="${web!}" target="_blank">${web!}</a>
                         </div>
                     </div>
                 </div>
