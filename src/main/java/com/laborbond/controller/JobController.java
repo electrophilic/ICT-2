@@ -164,7 +164,7 @@ public class JobController {
         u.industry = ind;
         u.type = type;
         u.location = loc;
-
+        
         List<Job> jobs = jobService.search(u);
         model.addAttribute("s", key);
         model.addAttribute("res", jobs);

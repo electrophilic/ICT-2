@@ -127,6 +127,7 @@ public class JobServiceImpl implements JobService{
     @Override
     public List<Job> search(JobSearch jobs) {
         //public String search(JobSearch jobs) {   
+        
         List<Job> job = new ArrayList<Job>();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String sql = "SELECT * FROM `job_id`, `job_filter`,`company_info` WHERE `company_info`.`com_id` = `job_id`.`com_id` AND ( `job_id`.`job_id`= `job_filter`.`job_id` AND `job_id`.`job_state` = 0 ";
@@ -149,7 +150,7 @@ public class JobServiceImpl implements JobService{
         sql = sql + ") AND ( 1=0";
         String[] location = jobs.location;
         for (int n = 0; n < location.length; n++) {
-            type[n] = "%" + location[n] + "%";
+            location[n] = "%" + location[n] + "%";
             sql = sql + " OR LOWER(`job_id`.`job_location`) LIKE LOWER(?)";
         }
 
@@ -167,7 +168,6 @@ public class JobServiceImpl implements JobService{
         param.addAll(Arrays.asList(type));
         param.addAll(Arrays.asList(location));
         param.addAll(Arrays.asList(industry));
-
         job = jdbcTemplate.query(sql, param.toArray(), new JobRowMapperJob());
 
         //return sql;
