@@ -20,7 +20,6 @@ import static com.laborbond.controller.UploadHelper.fileUpload;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -264,12 +263,12 @@ public class ApplyerController {
         ind = ind == null ? empty : ind;
         loc = loc == null ? empty : loc;
         key = key == null ? "" : key;
-
+        date= date == null ? -1 : date;
         EmSearch k = new EmSearch();
         k.text = key;
         k.industry = ind;
         k.location = loc;
-        k.date = date == null ? 0 : (System.currentTimeMillis()-86400000l*date);
+        k.date = date == -1?Double.MIN_EXPONENT:(System.currentTimeMillis()-86400000l*date);
         List<EmInfo> em = employeeService.search(k);
         model.addAttribute("s", key);
         model.addAttribute("res", em);

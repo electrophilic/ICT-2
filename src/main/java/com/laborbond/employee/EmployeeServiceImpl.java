@@ -109,7 +109,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             industry[n] = "%" + industry[n] + "%";
             sql = sql + " OR LOWER(`em_industry`) LIKE LOWER(?)";
         }
-        sql = sql + ") AND ( `em_time`>?)";
+        sql = sql + ") AND ( `em_time`>=?)";
         ArrayList param = new ArrayList();
         param.addAll(Arrays.asList(text));
         param.addAll(Arrays.asList(location));

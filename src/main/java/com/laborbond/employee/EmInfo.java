@@ -200,4 +200,30 @@ public class EmInfo {//employee infomation
     public void setDoc(String doc) {
         this.doc = doc;
     }
+
+    /**
+     * @return the time
+     */
+    public long getTime() {
+        return time;
+    }
+    
+    public long getDay() {
+        return (System.currentTimeMillis()-time)/86400000l;
+    }
+
+    /**
+     * @param time the time to set
+     */
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getPicAddr() {
+        return (pic != null && !"".equals(pic)) ? "/resources/uploadFiles/resume/" + Id + "/" + pic : "/resources/images/logo.png";
+    }
+
+    public String getDocAddr() {
+        return (doc != null && !"".equals(doc)) ? "/resources/uploadFiles/resume/" + Id + "/" + doc : "";
+    }
 }

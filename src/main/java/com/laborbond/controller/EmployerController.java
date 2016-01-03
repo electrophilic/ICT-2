@@ -49,6 +49,8 @@ public class EmployerController {
             @RequestParam(value = "com-info", required = false) String info,
             @RequestParam(value = "com-ind", required = false) String industry,
             @RequestParam(value = "com-pic-prv", required = false) String prvPhoto,
+            @RequestParam(value = "com-latitude", required = false) String latitudeS,
+            @RequestParam(value = "com-longitude", required = false) String longitudeS,
             @RequestParam("photo") MultipartFile photo,
             ModelMap model){
         String type = (String) session.getAttribute("type");
@@ -66,8 +68,13 @@ public class EmployerController {
             c.setEmail(companyEmail);
             c.setTel(tel);
             c.setAddress(address);
-            c.setLati(0);
-            c.setLongi(0);
+            try{
+                c.setLati(Double.parseDouble(latitudeS));
+                c.setLongi(Double.parseDouble(longitudeS));
+            }catch(Exception e){
+                c.setLati(0);
+                c.setLongi(0);
+            }
             c.setIndustry(industry);
             String rootPath = session.getServletContext().getRealPath("/resources/");
             File dir = new File(rootPath + File.separator + "uploadFiles" + File.separator + "employer" + File.separator + c.getId());
