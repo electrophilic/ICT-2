@@ -114,11 +114,11 @@
                                 icon: image,
                                 clickable: true,
                                 // Put the n
-                                title: "${name!}"
+                                title: "${name?js_string}"
                             });
 
                             myMarker.info = new google.maps.InfoWindow({
-                                content: "${address!}"
+                                content: "${address?js_string}"
                             });
 
                             google.maps.event.addListener(myMarker, 'click', function () {

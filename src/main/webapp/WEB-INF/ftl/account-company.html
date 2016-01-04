@@ -16,17 +16,17 @@
 
                     <!-- Nav pills -->
                     <ul class="nav nav-pills nav-justified">
-                        <li role="presentation" class="active"><a href="#comInfo" aria-controls="comInfo" role="tab" data-toggle="tab">COMPANY INFORMATION</a></li>
-                        <li role="presentation"><a href="#comProfile" aria-controls="comProfile" role="tab" data-toggle="tab">COMPANY PROFILE</a></li>
-                        <li role="presentation"><a href="#comJobs" aria-controls="comJobs" role="tab" data-toggle="tab">COMPANY JOBS</a></li>
+                        <li role="presentation"><a id="dtab-info"  class="dtab" href="#info" role="tab" data-toggle="tab">COMPANY INFORMATION</a></li>
+                        <li role="presentation"><a id="dtab-profile"  class="dtab" href="#profile" role="tab" data-toggle="tab">COMPANY PROFILE</a></li>
+                        <li role="presentation"><a id="dtab-job"  class="dtab" href="#jobs" role="tab" data-toggle="tab">COMPANY JOBS</a></li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="comInfo">
+                        <div role="tabpanel" class="tab-pane" id="info">
                             <#include "account.html">
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="comProfile">
+                        <div role="tabpanel" class="tab-pane" id="profile">
                             <hr class="dashed">
                             <h2>Update Company Profile</h2>
                             <form id="com-i" class="editor-form" action="/employer/update" method="post"  enctype="multipart/form-data">
@@ -180,7 +180,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="comJobs">
+                        <div role="tabpanel" class="tab-pane" id="jobs">
                             <hr class="dashed">
                             <h2>Manage Company Jobs Details</h2>
 

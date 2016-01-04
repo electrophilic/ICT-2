@@ -142,6 +142,22 @@ $("#cand-search-apply").click(function () {
     $('#scandform').submit();
 });
 
+acnt.showTab = function(tag){
+    if(tag === ""){
+        tag="info";
+    }
+    $('#dtab-'+tag).click();
+};
+acnt.showTab(window.location.hash.replace('#',''));
+
+$('.dash-control').click(function(e){
+    acnt.showTab($(e.target).attr("href").split('#')[1]);
+});
+
+$('.dtab').click(function(e){
+    window.location.hash =$(e.target).attr('id').split('-')[1];
+});
+
 var lsearch = {};
 lsearch.bindAll = function (all, target) {
     $(all).change(function () {

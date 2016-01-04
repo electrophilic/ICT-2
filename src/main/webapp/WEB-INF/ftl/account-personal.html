@@ -16,14 +16,14 @@
 
                     <!-- Nav pills -->
                     <ul class="nav nav-pills nav-justified">
-                        <li role="presentation" class="active"><a href="#myInfo" aria-controls="myInfo" role="tab" data-toggle="tab">MY PERSONAL INFORMATION</a></li>
-                        <li role="presentation"><a href="#myResume" aria-controls="myResume" role="tab" data-toggle="tab">MY RESUME</a></li>
-                        <li role="presentation"><a href="#myJob" aria-controls="myJob" role="tab" data-toggle="tab">MY JOBS</a></li>
+                        <li role="presentation"><a id="dtab-info" class="dtab" href="#myInfo" aria-controls="myInfo" role="tab" data-toggle="tab">MY PERSONAL INFORMATION</a></li>
+                        <li role="presentation"><a id="dtab-resume" class="dtab" href="#myResume" aria-controls="myResume" role="tab" data-toggle="tab">MY RESUME</a></li>
+                        <li role="presentation"><a id="dtab-job" class="dtab" href="#myJob" aria-controls="myJob" role="tab" data-toggle="tab">MY JOBS</a></li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="myInfo">
+                        <div role="tabpanel" class="tab-pane" id="myInfo">
                             <#include "account.html">
                         </div>
                         <div role="tabpanel" class="tab-pane" id="myResume">
