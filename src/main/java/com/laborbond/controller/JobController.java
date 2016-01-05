@@ -169,10 +169,12 @@ public class JobController {
         ind = ind == null ? empty : ind;
         type = type == null ? empty : type;
         loc = loc == null ? empty : loc;
+        cmin = (cmin != null) ? cmin : 0;
+        cmax = (cmax != null) ? cmax : 6000;
         JobSearch u = new JobSearch();
         u.text = key;
-        u.cmin = (cmin != null) ? cmin : 0;
-        u.cmax = (cmax != null) ? cmax : Integer.MAX_VALUE;
+        u.cmin = cmin;
+        u.cmax = cmax;
         u.industry = ind;
         u.type = type;
         u.location = loc;
