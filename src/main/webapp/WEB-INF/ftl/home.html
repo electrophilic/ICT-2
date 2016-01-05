@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
                                 <p class="job-salary"><strong>$${r.cmin!}</strong></p>
-                                <p class="badge full-time">${r.type!}</p>
+                                <p class="badge ${r.type?replace(" ", "-")?lower_case}">${r.type!}</p>
                             </div>
                         </div>
                     </a>
