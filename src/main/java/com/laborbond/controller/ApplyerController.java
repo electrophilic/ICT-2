@@ -196,6 +196,7 @@ public class ApplyerController {
         model.addAttribute("skill", emInfo.getSkill());
         model.addAttribute("keyskill", keySkill);
         model.addAttribute("location", emInfo.getLocation());
+        model.addAttribute("industry", emInfo.getIndustry());
         model.addAttribute("phone", emInfo.getTel());
         model.addAttribute("dob", emInfo.getBirth());
         model.addAttribute("experience", emExp);
@@ -234,6 +235,7 @@ public class ApplyerController {
         model.addAttribute("about", emInfo.getInfo());
         model.addAttribute("skill", emInfo.getSkill());
         model.addAttribute("location", emInfo.getLocation());
+        model.addAttribute("industry", emInfo.getIndustry());
         model.addAttribute("phone", emInfo.getTel());
         model.addAttribute("dob", Long.toString(emInfo.birth));
 

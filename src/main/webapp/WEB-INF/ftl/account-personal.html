@@ -81,12 +81,12 @@
                                         <div class="form-group" id="resume-industry">
                                             <label for="resume-industry">Job Industry</label>
                                             <select class="form-control" id="resume-industry" name="industry">
-                                                <option value="">Choose an industry</option>
-                                                <option value="Internet Services">Internet Services</option>
-                                                <option value="Banking">Banking</option>
-                                                <option value="Financial">Financial</option>
-                                                <option value="Marketing">Marketing</option>
-                                                <option value="Management">Management</option>
+                                                <option value="Other">Choose an industry</option>
+                                                <option value="Internet Services" <#if industry == "Internet Services"> selected</#if>>Internet Services</option>
+                                                <option value="Banking" <#if industry == "Banking"> selected</#if>>Banking</option>
+                                                <option value="Financial" <#if industry == "Financial"> selected</#if>>Financial</option>
+                                                <option value="Marketing" <#if industry == "Marketing"> selected</#if>>Marketing</option>
+                                                <option value="Management" <#if industry == "Management"> selected</#if>>Management</option>
                                             </select>
                                         </div>
                                     </div>
@@ -298,13 +298,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group" id="resume-school-group">
                                                 <label for="resume-school">School Name</label>
-                                                <input type="text" class="form-control" id="resume-school" name="school" placeholder="School name, city and country">
+                                                <input type="text" class="form-control" id="resume-school" name="school" value="${edu.academy!}" placeholder="School name, city and country">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group" id="resume-education-dates-group">
                                                 <label for="resume-education-dates">Start/End Date</label>
-                                                <input type="text" class="form-control" id="resume-education-dates" name="education-dates" placeholder="e.g. April 2010 - June 2013">
+                                                <input type="text" class="form-control" id="resume-education-dates" name="education-dates" value="${edu.year!}" placeholder="e.g. April 2010 - June 2013">
                                             </div>
                                         </div>
                                     </div>
@@ -312,13 +312,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group" id="resume-qualifications-group">
                                                 <label for="resume-qualifications">Qualifications</label>
-                                                <input type="text" class="form-control" id="resume-qualifications" name="qualifications" placeholder="e.g. Master Engineer">
+                                                <input type="text" class="form-control" id="resume-qualifications" name="qualifications" value="${edu.major!}" placeholder="e.g. Master Engineer">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group" id="resume-notes-group">
                                                 <label for="resume-notes">Notes (Optional)</label>
-                                                <input type="text" class="form-control" id="resume-notes" name="notes" placeholder="Any achievements">
+                                                <input type="text" class="form-control" id="resume-notes" name="notes" value="${edu.info!}" placeholder="Any achievements">
                                             </div>
                                         </div>
                                     </div>
@@ -354,7 +354,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group" id="resume-notes-group">
                                                 <label for="resume-notes">Notes (Optional)</label>
-                                                <input type="text" class="form-control" id="resume-notes" name="notes" placeholder="Any achievements">
+                                                <input type="text" class="form-control" id="resume-notes" name="responsibilities" placeholder="Any achievements">
                                             </div>
                                         </div>
                                     </div>
