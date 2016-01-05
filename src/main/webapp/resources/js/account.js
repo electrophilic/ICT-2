@@ -175,18 +175,17 @@ lsearch.bindAll = function (all, target) {
 };
 
 lsearch.showAll = function (all, target) {
-    var isAll = true;
-    $(target).each(function(index) {
-        if($(this).prop('checked') === false){
-            isAll=false;
-        }
-    });
-    $(all).prop("checked", isAll);
+    //var isAll = true;
+    //$(target).each(function(index) {
+    //    isAll=isAll && $(this).prop('checked');
+    //    console.log(isAll);
+    //});
+    $(all).prop("checked", $(target+':checked').length === $(target).length);
 };
 
-lsearch.bindAll('#job-type-all', '.job-type');
-lsearch.bindAll('#job-ind-all', '.job-ind');
-lsearch.bindAll('#job-loc-all', '.job-loc');
+lsearch.bindAll('#jobf-type-all', '.jobf-type');
+lsearch.bindAll('#jobf-ind-all', '.jobf-ind');
+lsearch.bindAll('#jobf-loc-all', '.jobf-loc');
 
 lsearch.bindAll('#cand-ind-all', '.cand-ind');
 lsearch.bindAll('#cand-loc-all', '.cand-loc');
