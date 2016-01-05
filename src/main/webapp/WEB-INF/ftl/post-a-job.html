@@ -22,31 +22,31 @@
                     <div class="form-group" id="job-location">
                         <label for="job-location">Location</label>
                         <select class="form-control" name="job-location">
-                            <option>Choose a job location</option>
-                            <option>Singapore</option>
-                            <option>Malaysia</option>
-                            <option>China</option>
-                            <option>Others</option>
+                            <option value="">Choose a job location</option>
+                            <option value="Singapore" <#if location == "Singapore"> selected</#if>>Singapore</option>
+                            <option value="Malaysia" <#if location == "Malaysia"> selected</#if>>Malaysia</option>
+                            <option value="China" <#if location == "China"> selected</#if>>China</option>
+                            <option value="Others" <#if location == "Others"> selected</#if>>Others</option>
                         </select>
                     </div>
                     <div class="form-group" id="job-type">
                         <label for="job-type">Job Type</label>
                         <select class="form-control" name="job-type">
-                            <option>Choose a job type</option>
-                            <option>Part Time</option>
-                            <option>Full Time</option>
-                            <option>Internship</option>
-                            <option>Others</option>
+                            <option value="">Choose a job type</option>
+                            <option value="Part Time" <#if type == "Part Time"> selected</#if>>Part Time</option>
+                            <option value="Full Time" <#if type == "Full Time"> selected</#if>>Full Time</option>
+                            <option value="Internship" <#if type == "Internship"> selected</#if>>Internship</option>
+                            <option value="Others" <#if type == "Others"> selected</#if>>Others</option>
                         </select>
                     </div>
                     <div class="form-group" id="job-industry">
                         <label for="job-industry">Job Industry</label>
                         <select class="form-control" name="job-industry">
-                            <option>Choose a category</option>
-                            <option>Banking</option>
-                            <option>Tourism</option>
-                            <option>Marketing</option>
-                            <option>Others</option>
+                            <option value="">Choose a category</option>
+                            <option value="Banking" <#if industry == "Banking"> selected</#if>>Banking</option>
+                            <option value="Tourism" <#if industry == "Tourism"> selected</#if>>Tourism</option>
+                            <option value="Marketing" <#if industry == "Marketing"> selected</#if>>Marketing</option>
+                            <option value="Others" <#if industry == "Others"> selected</#if>>Others</option>
                         </select>
                     </div>
                     <div class="form-group" id="job-salary">

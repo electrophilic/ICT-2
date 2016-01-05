@@ -33,6 +33,17 @@ public class JobController {
     @RequestMapping(value = "/job/post", method = RequestMethod.GET)
     public String postJob(ModelMap model) {
         model.addAttribute("action","/job/add");
+        model.addAttribute("id", 0);
+        model.addAttribute("location", "");
+        model.addAttribute("title", "");
+        model.addAttribute("info", "");
+        model.addAttribute("require", "");
+        model.addAttribute("duty", "");
+        model.addAttribute("apply", "");
+        model.addAttribute("industry", "");
+        model.addAttribute("cmin", 0);
+        model.addAttribute("cmax", 0);
+        model.addAttribute("type", "");
         return "post-a-job";
     }
     
@@ -49,7 +60,7 @@ public class JobController {
         Integer comId=(Integer) session.getAttribute("id");
         if (accountType != null && "company".equals(accountType)) {
             Job job = new Job();
-            job.id = comId;
+            job.offer.setId(comId);
             job.title = title;
             job.info = otherInfo;
             job.location = location;
@@ -61,7 +72,7 @@ public class JobController {
             job.cmax = salary;
             job.type = type;
             jobService.postJob(job);
-            return "redirect:/dash#";
+            return "redirect:/dash#job";
         } else {
             return "timeout";
         }
