@@ -80,11 +80,12 @@ public class JobController {
             @RequestParam(value = "apply", required = false) String apply,
             @RequestParam(value = "job-id") Integer jobId){
         String accountType = (String) session.getAttribute("type");
-        Integer comId=(Integer) session.getAttribute("id");
         if (accountType != null && "company".equals(accountType)) {
+            
+            int comId=(Integer) session.getAttribute("id");
             Job job = new Job();
             job.id = jobId;
-            job.offer.setId((int) comId);
+            job.offer.setId(comId);
             job.title = title;
             job.info = otherInfo;
             job.location = location;
@@ -96,7 +97,7 @@ public class JobController {
             job.cmax = salary;
             job.type = type;
             jobService.updateJob(job);
-            return "redirect:/dash#";
+            return "redirect:/job/"+jobId;
         } else {
             return "timeout";
         }

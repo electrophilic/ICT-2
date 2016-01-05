@@ -425,7 +425,7 @@
                                         <#else>
                                         <td class="closed">Closed</td>
                                         </#if>
-                                        <td>${j.time!}</td>
+                                        <td>${j.time?number_to_date}</td>
                                         <td class="action">
                                             <a href="#" onclick="acnt.emDelJob(${j.id})"><i class="fa fa-remove"></i> Delete</a>
                                         </td>

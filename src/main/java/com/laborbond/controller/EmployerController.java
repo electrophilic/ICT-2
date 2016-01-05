@@ -87,7 +87,7 @@ public class EmployerController {
                 c.setPic(prvPhoto);
             }
             companyService.updateComInfo(c);
-            return "redirect:/dash";
+            return "redirect:/dash#profile";
         }
 
         return "timeout";

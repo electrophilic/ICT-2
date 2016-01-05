@@ -30,7 +30,7 @@ public class Job {
 
 
     public Job() {
-        
+        offer=new ComInfo();
     }
 
     
