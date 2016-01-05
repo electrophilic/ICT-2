@@ -85,6 +85,28 @@
                 <div class="jobs">
 
                     <!-- Job offer 1 -->
+                    <#list res as r>
+                    <a href="/job/${r.id!}" class="featured applied">
+                        <div class="row">
+                            <div class="col-md-1 hidden-sm hidden-xs">
+                                <img src="${r.offer.picAddr!}" alt="" class="img-responsive" />
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
+                                <h5>${r.title!}</h5>
+                                <p><strong>${r.offer.name!}</strong></p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
+                                <p><strong>${r.location!}</strong></p>
+                                <p class="hidden-xs"><b>Industry:</b> ${r.industry!}</p>
+                            </div>
+                            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
+                                <p class="job-salary"><strong>$${r.cmin!}</strong></p>
+                                <p class="badge full-time">${r.type!}</p>
+                            </div>
+                        </div>
+                    </a>
+                    </#list>
+                    <!--
                     <a href="#" class="applied">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
@@ -105,7 +127,7 @@
                         </div>
                     </a>
 
-                    <!-- Job offer 2 -->
+                    -- Job offer 2 --
                     <a href="#">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
@@ -126,7 +148,7 @@
                         </div>
                     </a>
 
-                    <!-- Job offer 3 -->
+                    -- Job offer 3 --
                     <a href="#" class="applied">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
@@ -146,7 +168,7 @@
                             </div>
                         </div>
                     </a>
-
+-->
                 </div>
 
                 <a class="btn btn-primary" id="more-jobs">
