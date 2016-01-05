@@ -180,6 +180,8 @@ public class JobController {
         List<Job> jobs = jobService.search(u);
         model.addAttribute("s", key);
         model.addAttribute("res", jobs);
+        model.addAttribute("cmin", cmin);
+        model.addAttribute("cmax", cmax);
         model.addAttribute("count", jobs.size());
         return "find-jobs";
     }

@@ -398,7 +398,7 @@
         $("#years").Link('lower').to($("#years-field"));
 
         $('#salary').noUiSlider({
-            start: [3000, 7000],
+            start: [parseInt($("#cmin").val(),10), parseInt($("#cmax").val())],
             connect: true,
             step: 1000,
             range: {
