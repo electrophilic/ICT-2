@@ -132,6 +132,11 @@ public class ApplyerController {
                 String[] keySkillStringList = keySkills.split(", ");
                 for (String keySkill : keySkillStringList) {
                     Skill e = skillMap.get(keySkill);
+                    if (e == null) {
+                        skillService.addNewSkill(keySkill);
+                        skillMap = getSkillMap();
+                        e = skillMap.get(keySkill);
+                    }
                     if (e != null) {
                         skillList.add(e);
                     }

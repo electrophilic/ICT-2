@@ -80,11 +80,11 @@
                                             <label for="com-industry">Industry</label>
                                             <select class="form-control" name="com-ind" id="com-industry">
                                                 <option value="Other">Choose an industry</option>
-                                                <option value="Internet Services" <#if industry == "Internet Services"> selected</#if>>Internet Services</option>
-                                                <option value="Banking" <#if industry == "Banking"> selected</#if>>Banking</option>
-                                                <option value="Financial" <#if industry == "Financial"> selected</#if>>Financial</option>
-                                                <option value="Marketing" <#if industry == "Marketing"> selected</#if>>Marketing</option>
-                                                <option value="Management" <#if industry == "Management"> selected</#if>>Management</option>
+                                                <option value="Internet Services" <#if industry!"" == "Internet Services"> selected</#if>>Internet Services</option>
+                                                <option value="Banking" <#if industry!"" == "Banking"> selected</#if>>Banking</option>
+                                                <option value="Financial" <#if industry!"" == "Financial"> selected</#if>>Financial</option>
+                                                <option value="Marketing" <#if industry!"" == "Marketing"> selected</#if>>Marketing</option>
+                                                <option value="Management" <#if industry!"" == "Management"> selected</#if>>Management</option>
                                             </select>
                                         </div>
                                     </div>
