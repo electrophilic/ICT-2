@@ -9,6 +9,7 @@ import com.laborbond.employee.EmInfo;
 import com.laborbond.job.Job;
 import com.laborbond.job.JobSearch;
 import com.laborbond.job.JobService;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.json.JSONException;
@@ -171,19 +172,25 @@ public class JobController {
         loc = loc == null ? empty : loc;
         cmin = (cmin != null) ? cmin : 0;
         cmax = (cmax != null) ? cmax : 6000;
+        
+        model.addAttribute("s", key);
+        model.addAttribute("cmin", cmin);
+        model.addAttribute("cmax", cmax);
+        model.addAttribute("ind", Arrays.asList(ind));
+        model.addAttribute("type", Arrays.asList(type));
+        model.addAttribute("loc", Arrays.asList(loc));
+        
         JobSearch u = new JobSearch();
         u.text = key;
         u.cmin = cmin;
         u.cmax = cmax;
-        u.industry = ind;
-        u.type = type;
-        u.location = loc;
+        u.industry = ind.clone();
+        u.type = type.clone();
+        u.location = loc.clone();
         
         List<Job> jobs = jobService.search(u);
-        model.addAttribute("s", key);
+        
         model.addAttribute("res", jobs);
-        model.addAttribute("cmin", cmin);
-        model.addAttribute("cmax", cmax);
         model.addAttribute("count", jobs.size());
         return "find-jobs";
     }
