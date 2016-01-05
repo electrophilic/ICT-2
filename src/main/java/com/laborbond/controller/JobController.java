@@ -176,6 +176,7 @@ public class JobController {
         model.addAttribute("s", key);
         model.addAttribute("cmin", cmin);
         model.addAttribute("cmax", cmax);
+        
         model.addAttribute("ind", Arrays.asList(ind));
         model.addAttribute("type", Arrays.asList(type));
         model.addAttribute("loc", Arrays.asList(loc));

@@ -131,27 +131,27 @@
                                 <h5>Posted Since</h5>
                                 <div class="radio">
                                     <label>
-                                        <input  type="radio" name="date" value="-1"> All Time
+                                        <input  type="radio" name="date" value="-1" <#if date == -1> checked</#if>> All Time
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="date" value="7"> in 1 week
+                                        <input type="radio" name="date" value="7" <#if date == 7> checked</#if>> in 1 week
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="date" value="14"> in 2 week
+                                        <input type="radio" name="date" value="14" <#if date == 14> checked</#if>> in 2 week
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="date" value="35"> in 5 week
+                                        <input type="radio" name="date" value="35" <#if date == 35> checked</#if>> in 5 week
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="date" value="70"> in 10 week
+                                        <input type="radio" name="date" value="70" <#if date == 70> checked</#if>> in 10 week
                                     </label>
                                 </div>
                             </div>
@@ -164,22 +164,26 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="ind" class="cand-ind" type="checkbox" value="Banking"> Banking
+                                        <input name="ind" class="cand-ind" type="checkbox" value="Banking"
+                                               ${ind?seq_contains("Banking")?string("checked", "")}>Banking
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="ind" class="cand-ind" type="checkbox" value="Tourism"> Tourism
+                                        <input name="ind" class="cand-ind" type="checkbox" value="Tourism"
+                                               ${ind?seq_contains("Tourism")?string("checked", "")}>Tourism
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="ind" class="cand-ind" type="checkbox" value="Marketing"> Marketing
+                                        <input name="ind" class="cand-ind" type="checkbox" value="Marketing"
+                                               ${ind?seq_contains("Marketing")?string("checked", "")}>Marketing
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="ind" class="cand-ind" type="checkbox" value="Others"> Others
+                                        <input name="ind" class="cand-ind" type="checkbox" value="Others"
+                                               ${ind?seq_contains("Others")?string("checked", "")}>Others
                                     </label>
                                 </div>
                             </div>
@@ -199,22 +203,26 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="loc" class="cand-loc" type="checkbox" value="Singapore"> Singapore
+                                        <input name="loc" class="cand-loc" type="checkbox" value="Singapore"
+                                               ${loc?seq_contains("Singapore")?string("checked", "")}>Singapore
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="loc" class="cand-loc" type="checkbox" value="Malaysia"> Malaysia
+                                        <input name="loc" class="cand-loc" type="checkbox" value="Malaysia"
+                                               ${loc?seq_contains("Malaysia")?string("checked", "")}>Malaysia
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="loc" class="cand-loc" type="checkbox" value="China"> China
+                                        <input name="loc" class="cand-loc" type="checkbox" value="China"
+                                               ${loc?seq_contains("China")?string("checked", "")}>China
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="loc" class="cand-loc" type="checkbox" value="Others"> Others
+                                        <input name="loc" class="cand-loc" type="checkbox" value="Others"
+                                               ${loc?seq_contains("Others")?string("checked", "")}>Others
                                     </label>
                                 </div>
                             </div>

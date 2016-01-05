@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -271,10 +272,15 @@ public class ApplyerController {
         loc = loc == null ? empty : loc;
         key = key == null ? "" : key;
         date= date == null ? -1 : date;
+        
+        model.addAttribute("ind", Arrays.asList(ind));
+        model.addAttribute("date", date);
+        model.addAttribute("loc", Arrays.asList(loc));
+        
         EmSearch k = new EmSearch();
         k.text = key;
-        k.industry = ind;
-        k.location = loc;
+        k.industry = ind.clone();
+        k.location = loc.clone();
         k.date = date == -1?Double.MIN_EXPONENT:(System.currentTimeMillis()-86400000l*date);
         List<EmInfo> em = employeeService.search(k);
         model.addAttribute("s", key);
