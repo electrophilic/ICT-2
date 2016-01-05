@@ -177,7 +177,7 @@ lsearch.bindAll = function (all, target) {
 lsearch.showAll = function (all, target) {
     var isAll = true;
     $(target).each(function(index) {
-        if(!$( this ).prop('checked')){
+        if($(this).prop('checked') === false){
             isAll=false;
         }
     });
