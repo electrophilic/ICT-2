@@ -47,7 +47,7 @@
                     <li class="com_menu logout"><a href="/logout">Logout</a></li>
                     <hr>
                     <li><a href="/find/job?s=&type=Part+Time&type=Full+Time&type=Internship&type=Others&ind=Banking&ind=Tourism&ind=Marketing&ind=Other&loc=Singapore&loc=Malaysia&loc=China&loc=Others&cmin=0&cmax=6000">Find A Job</a></li>
-                    <li><a href="/find/candidates">Find A Candidate</a></li>
+                    <li><a href="/find/candidates?s=&date=-1&ind=Banking&ind=Tourism&ind=Marketing&ind=Others&loc=Singapore&loc=Malaysia&loc=China&loc=Others">Find A Candidate</a></li>
                     <span class="cand_menu"><hr></span>
                     <li class="cand_menu"><a href="/dash">Candidate</a>
                         <ul>                            
@@ -95,6 +95,21 @@
                         <div class="form-group">
                             <label class="sr-only" for="searchfield">Searchbox</label>
                             <input type="text" class="form-control" id="searchfield" name="s" placeholder="Type keywords and press enter">
+                            <input name="type" value="Part Time" type="hidden"/>
+                            <input name="type" value="Full Time" type="hidden"/>
+                            <input name="type" value="Internship" type="hidden"/>
+                            <input name="type" value="Others" type="hidden"/>
+                            <input name="ind" value="Banking" type="hidden">
+                            <input name="ind" value="Tourism" type="hidden">
+                            <input name="ind" value="Marketing" type="hidden">
+                            <input name="ind" value="Other" type="hidden">
+                            <input name="loc" value="Singapore" type="hidden">
+                            <input name="loc" value="Malaysia" type="hidden">
+                            <input name="loc" value="China" type="hidden">
+                            <input name="loc" value="Others" type="hidden">
+                            <input name="cmin" value="0" type="hidden">
+                            <input name="cmax" value="6000" type="hidden">
+
                         </div>
                     </form>
                 </div>
