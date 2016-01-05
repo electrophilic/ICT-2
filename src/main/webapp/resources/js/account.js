@@ -160,18 +160,30 @@ $('.dtab').click(function(e){
 
 var lsearch = {};
 lsearch.bindAll = function (all, target) {
+    lsearch.showAll(all, target);
     $(all).change(function () {
         var c = this.checked;
         $(target).prop("checked", c);
     });
     $(target).change(function () {
         if (this.checked) {
-
+            lsearch.showAll(all, target);
         } else {
             $(all).prop("checked", false);
         }
     });
 };
+
+lsearch.showAll = function (all, target) {
+    var isAll = true;
+    $(target).each(function(index) {
+        if(!$( this ).prop('checked')){
+            isAll=false;
+        }
+    });
+    $(all).prop("checked", isAll);
+};
+
 lsearch.bindAll('#job-type-all', '.job-type');
 lsearch.bindAll('#job-ind-all', '.job-ind');
 lsearch.bindAll('#job-loc-all', '.job-loc');
