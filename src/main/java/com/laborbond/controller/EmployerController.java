@@ -87,7 +87,7 @@ public class EmployerController {
                 c.setPic(prvPhoto);
             }
             companyService.updateComInfo(c);
-            return "redirect:/dash#profile";
+            return "redirect:/employer/"+c.getId();
         }
 
         return "timeout";
@@ -117,7 +117,11 @@ public class EmployerController {
         model.addAttribute("no", c.getNo());
         model.addAttribute("pic", c.getPicAddr());
         model.addAttribute("picprv", c.getPic());
-        model.addAttribute("web", c.getWeb());
+        String web=c.getWeb();
+        if(!web.contains("http")){
+            web="http://"+web;
+        }
+        model.addAttribute("web", web);
         model.addAttribute("info", c.getInfo());
         model.addAttribute("size", c.getSize());
         model.addAttribute("cemail", c.getEmail());
