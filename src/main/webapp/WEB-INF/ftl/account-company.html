@@ -80,11 +80,13 @@
                                             <label for="com-industry">Industry</label>
                                             <select class="form-control" name="com-ind" id="com-industry">
                                                 <option value="Other">Choose an industry</option>
-                                                <option value="Internet Services" <#if "Internet Services" == industry> selected</#if>>Internet Services</option>
-                                                <option value="Banking" <#if "Banking" == industry> selected</#if>>Banking</option>
-                                                <option value="Financial" <#if "Financial" == industry> selected</#if>>Financial</option>
-                                                <option value="Marketing" <#if "Marketing" == industry> selected</#if>>Marketing</option>
-                                                <option value="Management" <#if "Management" == industry> selected</#if>>Management</option>
+                                                
+                                                <option value="Internet Services" <#if industry??><#if "Internet Services" == industry> selected</#if></#if>>Internet Services</option>
+                                                <option value="Banking" <#if industry??><#if "Banking" == industry> selected</#if></#if>>Banking</option>
+                                                <option value="Financial" <#if industry??><#if "Financial" == industry> selected</#if></#if>>Financial</option>
+                                                <option value="Marketing" <#if industry??><#if "Marketing" == industry> selected</#if></#if>>Marketing</option>
+                                                <option value="Management" <#if industry??><#if "Management" == industry> selected</#if></#if>>Management</option>
+                                                
                                             </select>
                                         </div>
                                     </div>
