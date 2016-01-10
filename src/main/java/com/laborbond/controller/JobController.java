@@ -72,6 +72,7 @@ public class JobController {
             job.cmin = 0;
             job.cmax = salary;
             job.type = type;
+            job.time = System.currentTimeMillis();
             jobService.postJob(job);
             return "redirect:/dash#job";
         } else {
@@ -108,6 +109,7 @@ public class JobController {
             job.cmin = 0;
             job.cmax = salary;
             job.type = type;
+            job.time = System.currentTimeMillis();
             jobService.updateJob(job);
             return "redirect:/job/"+jobId;
         } else {
@@ -136,7 +138,11 @@ public class JobController {
         model.addAttribute("comno", job.offer.getNo());
         model.addAttribute("comind", job.offer.getIndustry());
         model.addAttribute("comsize", job.offer.getSize());
-        model.addAttribute("comweb", job.offer.getWeb());
+        String web=job.offer.getWeb();
+        if(!web.contains("http")){
+            web="http://"+web;
+        }
+        model.addAttribute("comweb", web);
         return "job-details";
     }
     

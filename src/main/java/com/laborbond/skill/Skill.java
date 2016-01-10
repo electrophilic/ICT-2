@@ -26,5 +26,9 @@ public class Skill {
         return skillInfo;
     }
     
+    public String toString(){
+        return skillInfo;
+    }
+    
     
 }

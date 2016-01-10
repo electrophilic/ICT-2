@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -93,6 +94,14 @@ public class ApplyerController {
         String accountType = (String) session.getAttribute("type");
         // we need to use either person or employee, do not use both of them
         if (accountType != null && "employee".equals(accountType)) {
+            schools=schools!=null?schools:new String[]{};
+            educationDates=educationDates!=null?educationDates:new String[]{};
+            qualifications=qualifications!=null?qualifications:new String[]{};
+            notes=notes!=null?notes:new String[]{};
+            employers=employers!=null?employers:new String[]{};
+            experienceDates=experienceDates!=null?experienceDates:new String[]{};
+            jobTitles=jobTitles!=null?jobTitles:new String[]{};
+            responsibilities=responsibilities!=null?responsibilities:new String[]{};
             EmInfo emInfo = new EmInfo();
             emInfo.time=System.currentTimeMillis();
             emInfo.setPic(photo.getOriginalFilename());
@@ -249,6 +258,8 @@ public class ApplyerController {
         model.addAttribute("experience", emExp);
         model.addAttribute("education", emEdu);
         model.addAttribute("jobs", jobs);
+        
+        model.addAttribute("keyskillStr", keySkill.toString().replaceAll(Pattern.quote("[") + "|" + Pattern.quote("]"), "")).replace(",", ", ");
         try {
             model.addAttribute("url", URLEncoder.encode("" + id, "UTF-8"));
         } catch (UnsupportedEncodingException ex) {
@@ -300,7 +311,7 @@ public class ApplyerController {
         if (accountType != null && "employee".equals(accountType)) {
             int emId = (Integer) session.getAttribute("id");
             jobService.applyJob(jobId, emId);
-            return "redirect:/dash#";
+            return "redirect:/dash#job";
         }
         model.addAttribute("applyerr", "Please login!");
         return "forward:/job/" + jobId;
