@@ -120,8 +120,8 @@ acnt.emDelJob = function (id) {
 };
 acnt.comDelJob = function (id) {
     $.post("/employer/deletejob", {"id": id}, function (data) {
-        $('#jobtitle' + id).addClass("closed-job");
-        $('#jobdel' + id).remove();
+        $('.jobin' + id).addClass("closed-job");
+        $('.jobst' + id).remove();
     });
 };
 

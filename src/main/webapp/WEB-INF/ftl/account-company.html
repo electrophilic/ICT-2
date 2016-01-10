@@ -80,11 +80,11 @@
                                             <label for="com-industry">Industry</label>
                                             <select class="form-control" name="com-ind" id="com-industry">
                                                 <option value="Other">Choose an industry</option>
-                                                <option value="Internet Services" <#if industry!"" == "Internet Services"> selected</#if>>Internet Services</option>
-                                                <option value="Banking" <#if industry!"" == "Banking"> selected</#if>>Banking</option>
-                                                <option value="Financial" <#if industry!"" == "Financial"> selected</#if>>Financial</option>
-                                                <option value="Marketing" <#if industry!"" == "Marketing"> selected</#if>>Marketing</option>
-                                                <option value="Management" <#if industry!"" == "Management"> selected</#if>>Management</option>
+                                                <option value="Internet Services" <#if "Internet Services" == industry> selected</#if>>Internet Services</option>
+                                                <option value="Banking" <#if "Banking" == industry> selected</#if>>Banking</option>
+                                                <option value="Financial" <#if "Financial" == industry> selected</#if>>Financial</option>
+                                                <option value="Marketing" <#if "Marketing" == industry> selected</#if>>Marketing</option>
+                                                <option value="Management" <#if "Management" == industry> selected</#if>>Management</option>
                                             </select>
                                         </div>
                                     </div>
@@ -196,10 +196,10 @@
                                 <tbody>
                                     <#list jobs as j>
                                     <tr>
-                                        <td class="title"><a href="/job/${j.id}" id="jobtitle${j.id}" <#if j.state == 1> class="closed-job"</#if>>${j.title!}</a></td>
-                                        <td><span <#if j.state == 1> class="closed-job"</#if>>${j.time?number_to_date}</span></td>
+                                        <td class="title"><a href="/job/${j.id}" class="jobin${j.id} <#if j.state == 1>closed-job</#if>" id="jobtitle${j.id}">${j.title!}</a></td>
+                                        <td><span  class="jobin${j.id}  <#if j.state == 1>closed-job</#if>">${j.time?number_to_date}</span></td>
                                         <td>
-                                            <a data-target="#view-candidates-${j.id}" href="/job/applyer/${j.id}" data-toggle="modal" <#if j.state == 1> class="closed-job"</#if>>view candidates</a>
+                                            <a data-target="#view-candidates-${j.id}"  class="jobin${j.id} <#if j.state == 1>closed-job</#if>" href="/job/applyer/${j.id}" data-toggle="modal">view candidates</a>
                                             <div id="view-candidates-${j.id}" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content"></div>
@@ -207,10 +207,10 @@
                                             </div>
                                         </td>
                                         <td class="action">
-                                            <a href="/job/${j.id}/edit"><i class="fa fa-pencil"></i> Edit</a>
-                                            <br>
                                             <#if j.state == 0> 
-                                            <a id="jobdel${j.id}" href="#"  onclick="acnt.comDelJob(${j.id})"><i class="fa fa-remove"></i> Delete</a>
+                                            <a class="jobst${j.id}"href="/job/${j.id}/edit"><i class="fa fa-pencil"></i> Edit</a>
+                                            <br>
+                                            <a class="jobst${j.id}" href="#job"  onclick="acnt.comDelJob(${j.id})"><i class="fa fa-remove"></i> Delete</a>
                                             </#if>
                                         </td>
                                     </tr>
