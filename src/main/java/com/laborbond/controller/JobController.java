@@ -56,7 +56,17 @@ public class JobController {
     }
 
     @RequestMapping(value = "/job/add", method = RequestMethod.POST)//add post when deployed
-    public String postJob(HttpSession session, @RequestParam(value = "job-title") String title, @RequestParam(value = "job-location", required = false) String location, @RequestParam(value = "job-type", required = false) String type, @RequestParam(value = "job-industry", required = false) String industry, @RequestParam(value = "job-salary", required = false) int salary, @RequestParam(value = "responsibilities", required = false) String responsible, @RequestParam(value = "requirements", required = false) String requirement, @RequestParam(value = "other_info", required = false) String otherInfo, @RequestParam(value = "apply", required = false) String apply) throws JSONException {
+    public String postJob(HttpSession session, 
+            @RequestParam(value = "job-title") String title, 
+            @RequestParam(value = "job-location", required = false) String location, 
+            @RequestParam(value = "job-type", required = false) String type, 
+            @RequestParam(value = "job-industry", required = false) String industry,
+            @RequestParam(value = "job-cmin", required = false) int cmin,
+            @RequestParam(value = "job-cmax", required = false) int cmax,
+            @RequestParam(value = "responsibilities", required = false) String responsible,
+            @RequestParam(value = "requirements", required = false) String requirement,
+            @RequestParam(value = "other_info", required = false) String otherInfo,
+            @RequestParam(value = "apply", required = false) String apply) throws JSONException {
         String accountType = (String) session.getAttribute("type");
         Integer comId=(Integer) session.getAttribute("id");
         if (accountType != null && "company".equals(accountType)) {
@@ -70,7 +80,8 @@ public class JobController {
             job.apply = apply;
             job.industry = industry;
             job.cmin = 0;
-            job.cmax = salary;
+            job.cmin = cmin;
+            job.cmax = cmax;
             job.type = type;
             job.time = System.currentTimeMillis();
             jobService.postJob(job);
@@ -86,7 +97,8 @@ public class JobController {
             @RequestParam(value = "job-location", required = false) String location,
             @RequestParam(value = "job-type", required = false) String type,
             @RequestParam(value = "job-industry", required = false) String industry,
-            @RequestParam(value = "job-salary", required = false) int salary,
+            @RequestParam(value = "job-cmin", required = false) int cmin,
+            @RequestParam(value = "job-cmax", required = false) int cmax,
             @RequestParam(value = "responsibilities", required = false) String responsible,
             @RequestParam(value = "requirements", required = false) String requirement,
             @RequestParam(value = "other_info", required = false) String otherInfo,
@@ -106,8 +118,8 @@ public class JobController {
             job.respon = responsible;
             job.apply = apply;
             job.industry = industry;
-            job.cmin = 0;
-            job.cmax = salary;
+            job.cmin = cmin;
+            job.cmax = cmax;
             job.type = type;
             job.time = System.currentTimeMillis();
             jobService.updateJob(job);

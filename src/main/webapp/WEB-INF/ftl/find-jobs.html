@@ -36,12 +36,12 @@
                                 <h5>${r.title!}</h5>
                                 <p><strong>${r.offer.name!}</strong></p>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
                                 <p><strong>${r.location!}</strong></p>
                                 <p class="hidden-xs"><b>Industry:</b> ${r.industry!}</p>
                             </div>
-                            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-                                <p class="job-salary"><strong>$${r.cmax!}</strong></p>
+                            <div class="col-lg-3 col-md-3 hidden-sm hidden-xs job-type text-center">
+                                <p class="job-salary"><strong>$${r.cmin!}-$${r.cmax!}</strong></p>
                                 <p class="badge ${r.type?replace(" ", "-")?lower_case}">${r.type!}</p>
                             </div>
                         </div>
