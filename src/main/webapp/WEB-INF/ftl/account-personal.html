@@ -82,11 +82,10 @@
                                             <label for="resume-industry">Job Industry</label>
                                             <select class="form-control" id="resume-industry" name="industry">
                                                 <option value="Other">Choose an industry</option>
-                                                <option value="Internet Services" <#if industry??><#if "Internet Services" == industry> selected</#if></#if>>Internet Services</option>
                                                 <option value="Banking" <#if industry??><#if "Banking" == industry> selected</#if></#if>>Banking</option>
-                                                <option value="Financial" <#if industry??><#if "Financial" == industry> selected</#if></#if>>Financial</option>
+                                                <option value="Tourism" <#if industry??><#if "Tourism" == industry> selected</#if></#if>>Tourism</option>
                                                 <option value="Marketing" <#if industry??><#if "Marketing" == industry> selected</#if></#if>>Marketing</option>
-                                                <option value="Management" <#if industry??><#if "Management" == industry> selected</#if></#if>>Management</option>
+                                                <option value="Other" <#if industry??><#if "Other" == industry> selected</#if></#if>>Other</option>
                                             </select>
                                         </div>
                                     </div>
@@ -95,7 +94,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group" id="resume-location">
                                             <label for="resume-location">Location</label>
-                                            <input type="text" class="form-control" id="resume-location" name="location" value="${location!}" placeholder="e.g. Singapore">
+                                            <select class="form-control" id="resume-location" name="location">
+                                                <option value="Other">Choose an location</option>
+                                                <option value="Singapore" <#if location??><#if "Singapore" == location> selected</#if></#if>>Singapore</option>
+                                                <option value="Malaysia" <#if location??><#if "Malaysia" == location> selected</#if></#if>>Malaysia</option>
+                                                <option value="China" <#if location??><#if "Marketing" == location> selected</#if></#if>>Marketing</option>
+                                                <option value="Other" <#if location??><#if "Other" == location> selected</#if></#if>>Other</option>
+                                            </select>                                        
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
