@@ -118,6 +118,7 @@ public class EmployerController {
         model.addAttribute("pic", c.getPicAddr());
         model.addAttribute("picprv", c.getPic());
         String web=c.getWeb();
+        web=web==null?"":web;
         if(!web.contains("http")){
             web="http://"+web;
         }

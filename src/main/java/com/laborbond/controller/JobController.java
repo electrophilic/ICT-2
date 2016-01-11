@@ -139,6 +139,7 @@ public class JobController {
         model.addAttribute("comind", job.offer.getIndustry());
         model.addAttribute("comsize", job.offer.getSize());
         String web=job.offer.getWeb();
+        web=web==null?"":web;
         if(!web.contains("http")){
             web="http://"+web;
         }
