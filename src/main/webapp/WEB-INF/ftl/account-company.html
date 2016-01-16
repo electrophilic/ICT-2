@@ -44,13 +44,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group" id="com-name-group">
                                             <label for="com-name">Company Name</label>
-                                            <input type="text" class="form-control" id="com-name" name="com-name" value="${name!}" placeholder="e.g. Coca Cola">
+                                            <input type="text" class="form-control" id="com-name" name="com-name" value="${(name!)?xhtml}" placeholder="e.g. Coca Cola">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group" id="com-add-group">
                                             <label for="com-add">Company Address</label>
-                                            <input type="text" class="form-control" id="com-add" name="com-add" value="${address!}" placeholder="e.g. 2 Madison Avenue">
+                                            <input type="text" class="form-control" id="com-add" name="com-add" value="${(address!)?xhtml}" placeholder="e.g. 2 Madison Avenue">
                                         </div>
                                     </div>
                                 </div>
@@ -58,13 +58,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group" id="com-contact-number">
                                             <label for="com-contact-number">Contact Number</label>
-                                            <input type="text" class="form-control" id="com-contact-number" name="com-contact-number" value="${tel!}" placeholder="e.g. 87105485">
+                                            <input type="text" class="form-control" id="com-contact-number" name="com-contact-number" value="${(tel!)?xhtml}" placeholder="e.g. 87105485">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group" id="com-email-group">
                                             <label for="com-email">Company Email</label>
-                                            <input type="email" class="form-control" id="com-email" name="com-email" value="${cemail!}" placeholder="name@yourdomain.com">
+                                            <input type="email" class="form-control" id="com-email" name="com-email" value="${(cemail!)?xhtml}" placeholder="name@yourdomain.com">
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group" id="com-reg-no-group">
                                             <label for="com-reg-no">Company Registration No.</label>
-                                            <input type="text" class="form-control" id="com-reg-no" name="com-reg-no" value="${no!}" placeholder="CB565124">
+                                            <input type="text" class="form-control" id="com-reg-no" name="com-reg-no" value="${(no!)?xhtml}" placeholder="CB565124">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -92,13 +92,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group" id="com-size-group">
                                             <label for="com-size">Company Size</label>
-                                            <input type="text" class="form-control" id="com-size" name="com-size" value="${size!}" placeholder="e.g. More than 50 people">
+                                            <input type="text" class="form-control" id="com-size" name="com-size" value="${(size!)?xhtml}" placeholder="e.g. More than 50 people">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group" id="com-web-group">
                                             <label for="com-web">Website</label>
-                                            <input type="text" class="form-control" id="com-web" name="com-web" value="${web!}" placeholder="http://">
+                                            <input type="text" class="form-control" id="com-web" name="com-web" value="${(web!)?xhtml}" placeholder="http://">
                                         </div>
                                     </div>
                                 </div>
@@ -164,8 +164,8 @@
                                                 </div>
                                             </div>
 
-                                            <div class="editor1" id="acc-about-com" contenteditable="true">${info!}</div>
-                                            <input id="com-info" type="hidden" name="com-info" value="${info!}">
+                                            <div class="editor1" id="acc-about-com" contenteditable="true">${(info!)?xhtml}</div>
+                                            <input id="com-info" type="hidden" name="com-info" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                                 <tbody>
                                     <#list jobs as j>
                                     <tr>
-                                        <td class="title"><a href="/job/${j.id}" class="jobin${j.id} <#if j.state == 1>closed-job</#if>" id="jobtitle${j.id}">${j.title!}</a></td>
+                                        <td class="title"><a href="/job/${j.id}" class="jobin${j.id} <#if j.state == 1>closed-job</#if>" id="jobtitle${j.id}">${(j.title!)?xhtml}</a></td>
                                         <td><span  class="jobin${j.id}  <#if j.state == 1>closed-job</#if>">${j.time?number_to_date}</span></td>
                                         <td>
                                             <a data-target="#view-candidates-${j.id}"  class="jobin${j.id} <#if j.state == 1>closed-job</#if>" href="/job/applyer/${j.id}" data-toggle="modal">view candidates</a>

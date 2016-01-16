@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <img src="${pic!}" class="img-responsive-logo img-responsive" alt="" />
+                <img src="${(pic!)?xhtml}" class="img-responsive-logo img-responsive" alt="" />
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
             <div class="col-sm-8">
                 <article>
                     <h2>About company</h2>
-                    ${info!}
+                    ${(info!)?replace("script>", "b>")}
                     <hr>
                     <h2>Location</h2>
 
@@ -114,11 +114,11 @@
                                 icon: image,
                                 clickable: true,
                                 // Put the n
-                                title: "${name?js_string}"
+                                title: "${(name!)?js_string}"
                             });
 
                             myMarker.info = new google.maps.InfoWindow({
-                                content: "${address?js_string}"
+                                content: "${(address!)?js_string}"
                             });
 
                             google.maps.event.addListener(myMarker, 'click', function () {
@@ -148,10 +148,10 @@
                 <div class="sidebar-widget" id="widget-contact">
                     <h2>Contact</h2>
                     <ul>
-                        <li><i class="fa fa-building"></i>${name!}</li>
-                        <li><i class="fa fa-map-marker"></i>${address!}</li>
-                        <li><i class="fa fa-phone"></i>${tel!}</li>
-                        <li><i class="fa fa-envelope"></i><a href="mailto:${cemail!}">Send an email</a></li>
+                        <li><i class="fa fa-building"></i>${(name!)?xhtml}</li>
+                        <li><i class="fa fa-map-marker"></i>${(address!)?xhtml}</li>
+                        <li><i class="fa fa-phone"></i>${(tel!)?xhtml}</li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto:${(cemail!)?xhtml}">Send an email</a></li>
                     </ul>
                     <br>
                     <hr>
@@ -159,22 +159,22 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-briefcase"></i> Registration No. </span>
-                            <br>${no!}
+                            <br>${(no!)?xhtml}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-industry"></i> Industry </span>
-                            <br>${industry!}
+                            <br>${(industry!)?xhtml}
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-users"></i> Company Size </span>
-                            <br>${size!}
+                            <br>${(size!)?xhtml}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-bookmark"></i> Website </span>
-                            <br><a href="${web!}" target="_blank">${web!}</a>
+                            <br><a href="${(web!)?xhtml}" target="_blank">${(web!)?xhtml}</a>
                         </div>
                     </div>
                 </div>

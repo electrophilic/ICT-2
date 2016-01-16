@@ -15,7 +15,7 @@
                 <tbody>
                     <#list applyerlist as e>
                         <tr>
-                            <td class="title">${e.fname!} ${e.lname!}</td>
+                            <td class="title">${(e.fname)?xhtml!} ${(e.lname)?xhtml!}</td>
                             <td class="action">
                                 <a href="/resume/${e.id!}"><i class="fa fa-sticky-note-o"></i> View Resume</a>
                             </td>

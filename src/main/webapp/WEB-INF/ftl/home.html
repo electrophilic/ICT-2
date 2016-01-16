@@ -89,19 +89,19 @@
                     <a href="/job/${r.id!}" class="featured applied">
                         <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
-                                <img src="${r.offer.picAddr!}" alt="" class="img-responsive" />
+                                <img src="${(r.offer.picAddr!)?xhtml}" alt="" class="img-responsive" />
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-                                <h5>${r.title!}</h5>
-                                <p><strong>${r.offer.name!}</strong></p>
+                                <h5>${(r.title!)?xhtml}</h5>
+                                <p><strong>${(r.offer.name!)?xhtml}</strong></p>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-                                <p><strong>${r.location!}</strong></p>
-                                <p class="hidden-xs"><b>Industry:</b> ${r.industry!}</p>
+                                <p><strong>${(r.location!)?xhtml}</strong></p>
+                                <p class="hidden-xs"><b>Industry:</b> ${(r.industry!)?xhtml}</p>
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-                                <p class="job-salary"><strong>$${r.cmin!}-$${r.cmax!}</strong></p>
-                                <p class="badge ${r.type?replace(" ", "-")?lower_case}">${r.type!}</p>
+                                <p class="job-salary"><strong>$${(r.cmin!)?xhtml}-$${(r.cmax!)?xhtml}</strong></p>
+                                <p class="badge ${r.type?replace(" ", "-")?lower_case}">${(r.type!)?xhtml}</p>
                             </div>
                         </div>
                     </a>

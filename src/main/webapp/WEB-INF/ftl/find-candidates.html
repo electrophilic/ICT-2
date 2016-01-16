@@ -30,18 +30,18 @@
                     <a href="/resume/${r.id}">
                         <div class="row">
                             <div class="col-xs-3 col-sm-2 col-lg-1">
-                                <img src="${r.picAddr!}" alt="" class="img-circle img-responsive" />
+                                <img src="${(r.picAddr!)?xhtml}" alt="" class="img-circle img-responsive" />
                             </div>
                             <div class="col-xs-9 col-sm-4 col-md-5 col-lg-4 candidate-name">
-                                <h5>${r.name!}</h5>
-                                <p><strong>${r.title!}</strong></p>
+                                <h5>${(r.name!)?xhtml}</h5>
+                                <p><strong>${(r.title!)?xhtml}</strong></p>
                             </div>
                             <div class="hidden-xs col-sm-6 col-md-5 col-lg-4 candidate-location">
-                                <p><strong>${r.location!}</strong></p>
-                                <p class="hidden-xs"><b>Industry:</b>${r.industry}</p>
+                                <p><strong>${(r.location!)?xhtml}</strong></p>
+                                <p class="hidden-xs"><b>Industry:</b>${(r.industry)?xhtml}</p>
                             </div>
                             <div class="hidden-xs hidden-sm hidden-md col-lg-3">
-                                <p class="candidate-date">${r.day!} day(s)</p>
+                                <p class="candidate-date">${(r.day!)?xhtml} day(s)</p>
                                 <p class="candidate-tags">
 
                                 </p>
@@ -49,54 +49,6 @@
                         </div>
                     </a>
                     </#list>
-
-                    <!-- 
-                    <a href="resume.html">
-                        <div class="row">
-                            <div class="col-xs-3 col-sm-2 col-lg-1">
-                                <img src="/resources/images/candidates/can2.jpg" alt="" class="img-circle img-responsive" />
-                            </div>
-                            <div class="col-xs-9 col-sm-4 col-md-5 col-lg-4 candidate-name">
-                                <h5>Matt Berry</h5>
-                                <p><strong>Senior Web Developer</strong></p>
-                            </div>
-                            <div class="hidden-xs col-sm-6 col-md-5 col-lg-4 candidate-location">
-                                <p><strong>Singapore - Central</strong></p>
-                                <p class="hidden-xs"><b>Industry:</b> Banking</p>
-                            </div>
-                            <div class="hidden-xs hidden-sm hidden-md col-lg-3">
-                                <p class="candidate-date">Updated 2 weeks ago</p>
-                                <p class="candidate-tags">
-                                    <span class="badge">IT</span>
-                                    <span class="badge">Web development</span>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-
-                     Candidate 3 
-                    <a href="resume.html">
-                        <div class="row">
-                            <div class="col-xs-3 col-sm-2 col-lg-1">
-                                <img src="/resources/images/candidates/can3.jpg" alt="" class="img-circle img-responsive" />
-                            </div>
-                            <div class="col-xs-9 col-sm-4 col-md-5 col-lg-4 candidate-name">
-                                <h5>Spencer Conner</h5>
-                                <p><strong>Front End Developer</strong></p>
-                            </div>
-                            <div class="hidden-xs col-sm-6 col-md-5 col-lg-4 candidate-location">
-                                <p><strong>Singapore - North</strong></p>
-                                <p class="hidden-xs"><b>Industry:</b> Banking</p>
-                            </div>
-                            <div class="hidden-xs hidden-sm hidden-md col-lg-3">
-                                <p class="candidate-date">Updated 1 week ago</p>
-                                <p class="candidate-tags">
-                                    <span class="badge">IT</span>
-                                    <span class="badge">Web development</span>
-                                </p>
-                            </div>
-                        </div>
-                    </a>-->
 
                 </div>
 

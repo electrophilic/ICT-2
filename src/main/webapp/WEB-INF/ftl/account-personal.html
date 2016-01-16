@@ -424,7 +424,7 @@
                                     <#list jobs as j>
                                     <tr id="job${j.id}">
                                         <td class="title">                       
-                                            <a href="/job/${j.id}" <#if j.state == 1> class="closed-job"</#if>>${j.title!}</a>    
+                                            <a href="/job/${j.id}" <#if j.state == 1> class="closed-job"</#if>>${(j.title!)?xhtml}</a>    
                                         </td>
                                         <#if j.state == 0>
                                         <td class="going">On Going</td>

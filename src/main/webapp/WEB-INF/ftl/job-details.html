@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <h1>${title!}</h1>
+                <h1>${(title!)?xhtml}</h1>
                 <h4>
-                    <span><i class="fa fa-map-marker"></i>${location!}</span>
-                    <span><i class="fa fa-clock-o"></i>${type!}</span>
-                    <span><i class="fa fa-building"></i>${industry!}</span>
-                    <span><i class="fa fa-dollar"></i>${cmin!}-${cmax!}</span>
+                    <span><i class="fa fa-map-marker"></i>${(location!)?xhtml}</span>
+                    <span><i class="fa fa-clock-o"></i>${(type!)?xhtml}</span>
+                    <span><i class="fa fa-building"></i>${(industry!)?xhtml}</span>
+                    <span><i class="fa fa-dollar"></i>${(cmin!)?xhtml}-${(cmax!)?xhtml}</span>
                 </h4>
             </div>
         </div>
@@ -30,15 +30,15 @@
                 <article>
                     <h2>Job Details</h2>
                     <h3>Job Responsibilities</h3> 
-                    <p>${duty!}</p>
+                    <p>${(duty!)?replace("script>", "b>")}</p>
                     <h3>Job Requirements</h3>
-                    <p>${require!}</p>
+                    <p>${(require!)?replace("script>", "b>")}</p>
                     <h3>Other Information</h3>
-                    <p>${info!}</p>
+                    <p>${(info!)?replace("script>", "b>")}</p>
                     <h3>How to apply</h3>
-                    <p>${apply!}</p>
+                    <p>${(apply!)?replace("script>", "b>")}</p>
                     <p>
-                        ${applyerr!}
+                        ${(applyerr!)?xhtml}
                     </p>
                     <p class="cand_menu">
                         <a href="/job/apply?jobId=${id!}" class="btn btn-primary btn-lg">Apply Here</a>
@@ -48,8 +48,8 @@
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="company">
                     <h2>About this company</h2>
-                    <p><img src="${compic!}" alt="" class="img-responsive-logo img-responsive"></p>
-                    <p>${comInfo!}</p>
+                    <p><img src="${(compic!)?xhtml}" alt="" class="img-responsive-logo img-responsive"></p>
+                    <p>${(cominfo!)?replace("script>", "b>")}</p>
                     <p><a href="/employer/${comid!}" class="btn btn-primary" target="_blank">Read more</a></p>
                 </div>
                 <hr>
@@ -58,22 +58,22 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-briefcase"></i> Registration No. </span>
-                            <br>${comno!}
+                            <br>${(comno!)?xhtml}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-industry"></i> Industry </span>
-                            <br>${comind!}
+                            <br>${(comind!)?xhtml}
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-users"></i> Company Size </span>
-                            <br>${comsize!}
+                            <br>${(comsize!)?xhtml}
                         </div>
                         <div class="col-sm-6">
                             <span class="snapshot"><i class="fa fa-bookmark"></i> Website </span>
-                            <br><a href="${comweb!}" target="_blank">${comweb!}</a>
+                            <br><a href="${(comweb!)?xhtml}" target="_blank">${(comweb!)?xhtml}</a>
                         </div>
                     </div>                        
                 </div>
