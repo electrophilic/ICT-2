@@ -42,8 +42,8 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
         p:driverClassName="com.mysql.jdbc.Driver"
         p:url="jdbc:mysql://localhost/job_agent"
-        p:username="laborbond1337"
-        p:password="laborbond2015">
+        p:username="*****"
+        p:password="*****">
     </bean> 
     
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
