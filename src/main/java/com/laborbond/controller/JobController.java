@@ -149,16 +149,19 @@ public class JobController {
         job.respon = responsible;
         job.apply = apply;
         job.industry = industry;
-        job.cmin = cmin;
-        job.cmax = cmax;
+        if(cmax>=cmin){
+            job.cmin = cmin;
+            job.cmax = cmax;
+        }else{
+            job.cmin = cmax;
+            job.cmax = cmin;
+        }
         job.type = type;
         job.time = System.currentTimeMillis();
         return job;
     }
-
-    @RequestMapping(value = "/job/{id}")//change this to restful url after refactoring
-    public String viewJob(ModelMap model, @PathVariable("id") int id) {
-        Job job = jobService.getJob(id);
+    
+    private void jobMapper(ModelMap model, int id, Job job){
         model.addAttribute("id", id);
         model.addAttribute("location", job.location);
         model.addAttribute("title", job.title);
@@ -170,6 +173,12 @@ public class JobController {
         model.addAttribute("cmin", job.cmin);
         model.addAttribute("cmax", job.cmax);
         model.addAttribute("type", job.type);
+    }
+
+    @RequestMapping(value = "/job/{id}")//change this to restful url after refactoring
+    public String viewJob(ModelMap model, @PathVariable("id") int id) {
+        Job job = jobService.getJob(id);
+        jobMapper(model,id,job);
         model.addAttribute("compic", job.offer.getPicAddr());
         model.addAttribute("cominfo", job.offer.getInfo());
         model.addAttribute("comid", job.offer.getId());
@@ -189,17 +198,7 @@ public class JobController {
     public String jobEdit(ModelMap model, @PathVariable("id") int id) {
         Job job = jobService.getJob(id);
         model.addAttribute("action", "/job/update");
-        model.addAttribute("id", id);
-        model.addAttribute("location", job.location);
-        model.addAttribute("title", job.title);
-        model.addAttribute("info", job.info);
-        model.addAttribute("require", job.request);
-        model.addAttribute("duty", job.respon);
-        model.addAttribute("apply", job.apply);
-        model.addAttribute("industry", job.industry);
-        model.addAttribute("cmin", job.cmin);
-        model.addAttribute("cmax", job.cmax);
-        model.addAttribute("type", job.type);
+        jobMapper(model,id,job);
         return "post-a-job";
     }
 
