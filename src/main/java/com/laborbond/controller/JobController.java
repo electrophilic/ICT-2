@@ -33,7 +33,7 @@ public class JobController {
 
     @RequestMapping(value = "/job/post", method = RequestMethod.GET)
     public String postJob(ModelMap model) {
-        model.addAttribute("action","/job/add");
+        model.addAttribute("action", "/job/add");
         model.addAttribute("id", 0);
         model.addAttribute("location", "");
         model.addAttribute("title", "");
@@ -47,19 +47,19 @@ public class JobController {
         model.addAttribute("type", "");
         return "post-a-job";
     }
-    
+
     @RequestMapping(value = "/job/applyer/{id}", method = RequestMethod.GET)
     public String jobApplyer(ModelMap model, @PathVariable("id") Integer jobId) {
         List<EmInfo> EmInfo = jobService.getEmByJobId(jobId);
-        model.addAttribute("applyerlist",EmInfo);
+        model.addAttribute("applyerlist", EmInfo);
         return "view-app";
     }
 
     @RequestMapping(value = "/job/add", method = RequestMethod.POST)//add post when deployed
-    public String postJob(HttpSession session, 
-            @RequestParam(value = "job-title") String title, 
-            @RequestParam(value = "job-location", required = false) String location, 
-            @RequestParam(value = "job-type", required = false) String type, 
+    public String postJob(HttpSession session,
+            @RequestParam(value = "job-title") String title,
+            @RequestParam(value = "job-location", required = false) String location,
+            @RequestParam(value = "job-type", required = false) String type,
             @RequestParam(value = "job-industry", required = false) String industry,
             @RequestParam(value = "job-cmin", required = false) int cmin,
             @RequestParam(value = "job-cmax", required = false) int cmax,
@@ -68,29 +68,27 @@ public class JobController {
             @RequestParam(value = "other_info", required = false) String otherInfo,
             @RequestParam(value = "apply", required = false) String apply) throws JSONException {
         String accountType = (String) session.getAttribute("type");
-        Integer comId=(Integer) session.getAttribute("id");
+        Integer comId = (Integer) session.getAttribute("id");
         if (accountType != null && "company".equals(accountType)) {
-            Job job = new Job();
-            job.offer.setId(comId);
-            job.title = title;
-            job.info = otherInfo;
-            job.location = location;
-            job.request = requirement;
-            job.respon = responsible;
-            job.apply = apply;
-            job.industry = industry;
-            job.cmin = 0;
-            job.cmin = cmin;
-            job.cmax = cmax;
-            job.type = type;
-            job.time = System.currentTimeMillis();
-            jobService.postJob(job);
+            jobService.postJob(jobMapper(
+                    comId,
+                    title,
+                    otherInfo,
+                    location,
+                    requirement,
+                    responsible,
+                    apply,
+                    industry,
+                    cmin,
+                    cmax,
+                    type
+            ));
             return "redirect:/dash#job";
         } else {
             return "timeout";
         }
     }
-    
+
     @RequestMapping(value = "/job/update", method = RequestMethod.POST)//add post when deployed
     public String updateJob(HttpSession session,
             @RequestParam(value = "job-title") String title,
@@ -103,33 +101,61 @@ public class JobController {
             @RequestParam(value = "requirements", required = false) String requirement,
             @RequestParam(value = "other_info", required = false) String otherInfo,
             @RequestParam(value = "apply", required = false) String apply,
-            @RequestParam(value = "job-id") Integer jobId){
+            @RequestParam(value = "job-id") Integer jobId) {
         String accountType = (String) session.getAttribute("type");
         if (accountType != null && "company".equals(accountType)) {
-            
-            int comId=(Integer) session.getAttribute("id");
-            Job job = new Job();
+
+            int comId = (Integer) session.getAttribute("id");
+            Job job = jobMapper(
+                    comId,
+                    title,
+                    otherInfo,
+                    location,
+                    requirement,
+                    responsible,
+                    apply,
+                    industry,
+                    cmin,
+                    cmax,
+                    type
+            );
             job.id = jobId;
-            job.offer.setId(comId);
-            job.title = title;
-            job.info = otherInfo;
-            job.location = location;
-            job.request = requirement;
-            job.respon = responsible;
-            job.apply = apply;
-            job.industry = industry;
-            job.cmin = cmin;
-            job.cmax = cmax;
-            job.type = type;
-            job.time = System.currentTimeMillis();
             jobService.updateJob(job);
-            return "redirect:/job/"+jobId;
+            return "redirect:/job/" + jobId;
         } else {
             return "timeout";
         }
-        
+
     }
-    
+
+    private Job jobMapper(
+            int comId,
+            String title,
+            String otherInfo,
+            String location,
+            String requirement,
+            String responsible,
+            String apply,
+            String industry,
+            int cmin,
+            int cmax,
+            String type) {
+        Job job = new Job();
+        job.offer.setId(comId);
+        job.title = title;
+        job.info = otherInfo;
+        job.location = location;
+        job.request = requirement;
+        job.respon = responsible;
+        job.apply = apply;
+        job.industry = industry;
+        job.cmin = cmin;
+        job.cmax = cmax;
+        job.type = type;
+        job.time = System.currentTimeMillis();
+        return job;
+    }
+
     @RequestMapping(value = "/job/{id}")//change this to restful url after refactoring
     public String viewJob(ModelMap model, @PathVariable("id") int id) {
         Job job = jobService.getJob(id);
@@ -150,20 +176,19 @@ public class JobController {
         model.addAttribute("comno", job.offer.getNo());
         model.addAttribute("comind", job.offer.getIndustry());
         model.addAttribute("comsize", job.offer.getSize());
-        String web=job.offer.getWeb();
-        web=web==null?"":web;
-        if(!web.contains("http")){
-            web="http://"+web;
+        String web = job.offer.getWeb();
+        web = web == null ? "" : web;
+        if (!web.contains("http")) {
+            web = "http://" + web;
         }
         model.addAttribute("comweb", web);
         return "job-details";
     }
-    
 
     @RequestMapping(value = "/job/{id}/edit")//change this to restful url after refactoring
     public String jobEdit(ModelMap model, @PathVariable("id") int id) {
         Job job = jobService.getJob(id);
-        model.addAttribute("action","/job/update");
+        model.addAttribute("action", "/job/update");
         model.addAttribute("id", id);
         model.addAttribute("location", job.location);
         model.addAttribute("title", job.title);
@@ -177,6 +202,7 @@ public class JobController {
         model.addAttribute("type", job.type);
         return "post-a-job";
     }
+
     @RequestMapping(value = "/find/job")
     public String search(ModelMap model,
             @RequestParam(value = "s", required = false, defaultValue = "") String key,
@@ -191,15 +217,15 @@ public class JobController {
         loc = loc == null ? empty : loc;
         cmin = (cmin != null) ? cmin : 0;
         cmax = (cmax != null) ? cmax : 6000;
-        
+
         model.addAttribute("s", key);
         model.addAttribute("cmin", cmin);
         model.addAttribute("cmax", cmax);
-        
+
         model.addAttribute("ind", Arrays.asList(ind));
         model.addAttribute("type", Arrays.asList(type));
         model.addAttribute("loc", Arrays.asList(loc));
-        
+
         JobSearch u = new JobSearch();
         u.text = key;
         u.cmin = cmin;
@@ -207,9 +233,9 @@ public class JobController {
         u.industry = ind.clone();
         u.type = type.clone();
         u.location = loc.clone();
-        
+
         List<Job> jobs = jobService.search(u);
-        
+
         model.addAttribute("res", jobs);
         model.addAttribute("count", jobs.size());
         return "find-jobs";

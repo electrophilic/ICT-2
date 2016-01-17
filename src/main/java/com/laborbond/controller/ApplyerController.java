@@ -93,7 +93,7 @@ public class ApplyerController {
 
         String accountType = (String) session.getAttribute("type");
         // we need to use either person or employee, do not use both of them
-        if (accountType != null && "employee".equals(accountType)) {
+        if (accountType != null && "employee".equals(accountType)) { 
             schools=schools!=null?schools:new String[]{};
             educationDates=educationDates!=null?educationDates:new String[]{};
             qualifications=qualifications!=null?qualifications:new String[]{};

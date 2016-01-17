@@ -682,48 +682,12 @@ img.pull-right {
 /* 4.3. WYSIWYG
         ---------------------------------------------------------------*/
 
-.editor1 {
+.editor1, .editor2, .editor3, .editor4, .editor5 {
     background: #f8f8f8;
     border: 1px solid #e7e7e7;
     border-radius: 0 0 3px 3px;
     height: 200px;
-    overflow: hidden;
-    padding: 15px;
-}
-
-.editor2 {
-    background: #f8f8f8;
-    border: 1px solid #e7e7e7;
-    border-radius: 0 0 3px 3px;
-    height: 200px;
-    overflow: hidden;
-    padding: 15px;
-}
-
-.editor3 {
-    background: #f8f8f8;
-    border: 1px solid #e7e7e7;
-    border-radius: 0 0 3px 3px;
-    height: 200px;
-    overflow: hidden;
-    padding: 15px;
-}
-
-.editor4 {
-    background: #f8f8f8;
-    border: 1px solid #e7e7e7;
-    border-radius: 0 0 3px 3px;
-    height: 200px;
-    overflow: hidden;
-    padding: 15px;
-}
-
-.editor5 {
-    background: #f8f8f8;
-    border: 1px solid #e7e7e7;
-    border-radius: 0 0 3px 3px;
-    height: 200px;
-    overflow: hidden;
+    overflow: scroll;
     padding: 15px;
 }
 
