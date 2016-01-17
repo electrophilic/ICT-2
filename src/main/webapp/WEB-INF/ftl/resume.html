@@ -28,9 +28,9 @@
                         <img src="${(pic!)?xhtml}" alt="" class="img-responsive-logo img-rounded img-responsive" />
                     </#if>
                     <br><br>
-                    <p>${(about!)?replace("script>", "b>")}</p>
+                    <p>${(about!)?replace("<script", "")?replace("</script", "")}</p>
                     <h3>Skills</h3>
-                    ${(skill!)?replace("script>", "b>")}
+                    ${(skill!)?replace("<script", "")?replace("</script", "")}
                     <h3>Work Experience</h3>
                     <#list experience as exp>
                         <div class="row work-experience">

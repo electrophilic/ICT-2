@@ -30,13 +30,13 @@
                 <article>
                     <h2>Job Details</h2>
                     <h3>Job Responsibilities</h3> 
-                    <p>${(duty!)?replace("script>", "b>")}</p>
+                    <p>${(duty!)?replace("<script", "")?replace("</script", "")}</p>
                     <h3>Job Requirements</h3>
-                    <p>${(require!)?replace("script>", "b>")}</p>
+                    <p>${(require!)?replace("<script", "")?replace("</script", "")}</p>
                     <h3>Other Information</h3>
-                    <p>${(info!)?replace("script>", "b>")}</p>
+                    <p>${(info!)?replace("<script", "")?replace("</script", "")}</p>
                     <h3>How to apply</h3>
-                    <p>${(apply!)?replace("script>", "b>")}</p>
+                    <p>${(apply!)?replace("<script", "")?replace("</script", "")}</p>
                     <p>
                         ${(applyerr!)?xhtml}
                     </p>
@@ -49,7 +49,7 @@
                 <div class="sidebar-widget" id="company">
                     <h2>About this company</h2>
                     <p><img src="${(compic!)?xhtml}" alt="" class="img-responsive-logo img-responsive"></p>
-                    <p>${(cominfo!)?replace("script>", "b>")}</p>
+                    <p>${(cominfo!)?replace("<script", "")?replace("</script", "")}</p>
                     <p><a href="/employer/${comid!}" class="btn btn-primary" target="_blank">Read more</a></p>
                 </div>
                 <hr>
